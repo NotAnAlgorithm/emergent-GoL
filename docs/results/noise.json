@@ -1,0 +1,3860 @@
+{
+  "engineVersion": "1.0.0",
+  "sourceHash": "ac70277533213f5ff427175cb0eef2a9e68a68d1b5cd8d41edff32059e0bd279",
+  "generatedAt": "2026-09-09T17:27:00.402Z",
+  "node": "v22.23.2",
+  "cpu": "Intel(R) Core(TM) Ultra 7 155H",
+  "summaryWindow": 500,
+  "selected": {
+    "rule": "B345/S15",
+    "meanActivity": 0.5444179687499999,
+    "activityVariance": 0.09040420316359729
+  },
+  "selectionCriterion": "Largest across-run activity variance among sampled rules with mean final-500 activity strictly between 0.02 and 0.8.",
+  "runCount": 150,
+  "elapsedSeconds": 254.287,
+  "results": [
+    {
+      "config": {
+        "rule": "B3/S23",
+        "width": 128,
+        "height": 128,
+        "generations": 2000,
+        "boundary": "wrap",
+        "density": 0.3,
+        "initialSeed": 1,
+        "noiseSeed": 1001,
+        "noiseProbability": 0
+      },
+      "summary": {
+        "density": 0.0411644287109375,
+        "activity": 0.020462158203125,
+        "difference": 0
+      },
+      "finalMeasurement": {
+        "generation": 2000,
+        "density": 0.046630859375,
+        "activity": 0.0269775390625,
+        "difference": 0
+      }
+    },
+    {
+      "config": {
+        "rule": "B3/S23",
+        "width": 128,
+        "height": 128,
+        "generations": 2000,
+        "boundary": "wrap",
+        "density": 0.3,
+        "initialSeed": 2,
+        "noiseSeed": 1002,
+        "noiseProbability": 0
+      },
+      "summary": {
+        "density": 0.0291136474609375,
+        "activity": 0.0066549072265625,
+        "difference": 0
+      },
+      "finalMeasurement": {
+        "generation": 2000,
+        "density": 0.0291748046875,
+        "activity": 0.006591796875,
+        "difference": 0
+      }
+    },
+    {
+      "config": {
+        "rule": "B3/S23",
+        "width": 128,
+        "height": 128,
+        "generations": 2000,
+        "boundary": "wrap",
+        "density": 0.3,
+        "initialSeed": 3,
+        "noiseSeed": 1003,
+        "noiseProbability": 0
+      },
+      "summary": {
+        "density": 0.0489346923828125,
+        "activity": 0.0309385986328125,
+        "difference": 0
+      },
+      "finalMeasurement": {
+        "generation": 2000,
+        "density": 0.04364013671875,
+        "activity": 0.02618408203125,
+        "difference": 0
+      }
+    },
+    {
+      "config": {
+        "rule": "B3/S23",
+        "width": 128,
+        "height": 128,
+        "generations": 2000,
+        "boundary": "wrap",
+        "density": 0.3,
+        "initialSeed": 4,
+        "noiseSeed": 1004,
+        "noiseProbability": 0
+      },
+      "summary": {
+        "density": 0.030396240234375,
+        "activity": 0.00989794921875,
+        "difference": 0
+      },
+      "finalMeasurement": {
+        "generation": 2000,
+        "density": 0.02740478515625,
+        "activity": 0.0068359375,
+        "difference": 0
+      }
+    },
+    {
+      "config": {
+        "rule": "B3/S23",
+        "width": 128,
+        "height": 128,
+        "generations": 2000,
+        "boundary": "wrap",
+        "density": 0.3,
+        "initialSeed": 5,
+        "noiseSeed": 1005,
+        "noiseProbability": 0
+      },
+      "summary": {
+        "density": 0.05158447265625,
+        "activity": 0.0274061279296875,
+        "difference": 0
+      },
+      "finalMeasurement": {
+        "generation": 2000,
+        "density": 0.04437255859375,
+        "activity": 0.023681640625,
+        "difference": 0
+      }
+    },
+    {
+      "config": {
+        "rule": "B3/S23",
+        "width": 128,
+        "height": 128,
+        "generations": 2000,
+        "boundary": "wrap",
+        "density": 0.3,
+        "initialSeed": 6,
+        "noiseSeed": 1006,
+        "noiseProbability": 0
+      },
+      "summary": {
+        "density": 0.0424986572265625,
+        "activity": 0.0251717529296875,
+        "difference": 0
+      },
+      "finalMeasurement": {
+        "generation": 2000,
+        "density": 0.040771484375,
+        "activity": 0.021240234375,
+        "difference": 0
+      }
+    },
+    {
+      "config": {
+        "rule": "B3/S23",
+        "width": 128,
+        "height": 128,
+        "generations": 2000,
+        "boundary": "wrap",
+        "density": 0.3,
+        "initialSeed": 7,
+        "noiseSeed": 1007,
+        "noiseProbability": 0
+      },
+      "summary": {
+        "density": 0.04337353515625,
+        "activity": 0.0238577880859375,
+        "difference": 0
+      },
+      "finalMeasurement": {
+        "generation": 2000,
+        "density": 0.0439453125,
+        "activity": 0.02423095703125,
+        "difference": 0
+      }
+    },
+    {
+      "config": {
+        "rule": "B3/S23",
+        "width": 128,
+        "height": 128,
+        "generations": 2000,
+        "boundary": "wrap",
+        "density": 0.3,
+        "initialSeed": 8,
+        "noiseSeed": 1008,
+        "noiseProbability": 0
+      },
+      "summary": {
+        "density": 0.0289306640625,
+        "activity": 0.0120849609375,
+        "difference": 0
+      },
+      "finalMeasurement": {
+        "generation": 2000,
+        "density": 0.02886962890625,
+        "activity": 0.0120849609375,
+        "difference": 0
+      }
+    },
+    {
+      "config": {
+        "rule": "B3/S23",
+        "width": 128,
+        "height": 128,
+        "generations": 2000,
+        "boundary": "wrap",
+        "density": 0.3,
+        "initialSeed": 9,
+        "noiseSeed": 1009,
+        "noiseProbability": 0
+      },
+      "summary": {
+        "density": 0.03369140625,
+        "activity": 0.010009765625,
+        "difference": 0
+      },
+      "finalMeasurement": {
+        "generation": 2000,
+        "density": 0.03369140625,
+        "activity": 0.010009765625,
+        "difference": 0
+      }
+    },
+    {
+      "config": {
+        "rule": "B3/S23",
+        "width": 128,
+        "height": 128,
+        "generations": 2000,
+        "boundary": "wrap",
+        "density": 0.3,
+        "initialSeed": 10,
+        "noiseSeed": 1010,
+        "noiseProbability": 0
+      },
+      "summary": {
+        "density": 0.0290982666015625,
+        "activity": 0.0144951171875,
+        "difference": 0
+      },
+      "finalMeasurement": {
+        "generation": 2000,
+        "density": 0.0281982421875,
+        "activity": 0.01275634765625,
+        "difference": 0
+      }
+    },
+    {
+      "config": {
+        "rule": "B3/S23",
+        "width": 128,
+        "height": 128,
+        "generations": 2000,
+        "boundary": "wrap",
+        "density": 0.3,
+        "initialSeed": 1,
+        "noiseSeed": 1001,
+        "noiseProbability": 0.0001
+      },
+      "summary": {
+        "density": 0.05924951171875,
+        "activity": 0.0398145751953125,
+        "difference": 0.0958524169921875
+      },
+      "finalMeasurement": {
+        "generation": 2000,
+        "density": 0.0704345703125,
+        "activity": 0.042236328125,
+        "difference": 0.1131591796875
+      }
+    },
+    {
+      "config": {
+        "rule": "B3/S23",
+        "width": 128,
+        "height": 128,
+        "generations": 2000,
+        "boundary": "wrap",
+        "density": 0.3,
+        "initialSeed": 2,
+        "noiseSeed": 1002,
+        "noiseProbability": 0.0001
+      },
+      "summary": {
+        "density": 0.0543284912109375,
+        "activity": 0.039542724609375,
+        "difference": 0.08041748046875
+      },
+      "finalMeasurement": {
+        "generation": 2000,
+        "density": 0.06536865234375,
+        "activity": 0.04656982421875,
+        "difference": 0.09027099609375
+      }
+    },
+    {
+      "config": {
+        "rule": "B3/S23",
+        "width": 128,
+        "height": 128,
+        "generations": 2000,
+        "boundary": "wrap",
+        "density": 0.3,
+        "initialSeed": 3,
+        "noiseSeed": 1003,
+        "noiseProbability": 0.0001
+      },
+      "summary": {
+        "density": 0.0696116943359375,
+        "activity": 0.050428955078125,
+        "difference": 0.112140869140625
+      },
+      "finalMeasurement": {
+        "generation": 2000,
+        "density": 0.07708740234375,
+        "activity": 0.05401611328125,
+        "difference": 0.11376953125
+      }
+    },
+    {
+      "config": {
+        "rule": "B3/S23",
+        "width": 128,
+        "height": 128,
+        "generations": 2000,
+        "boundary": "wrap",
+        "density": 0.3,
+        "initialSeed": 4,
+        "noiseSeed": 1004,
+        "noiseProbability": 0.0001
+      },
+      "summary": {
+        "density": 0.0523792724609375,
+        "activity": 0.036583984375,
+        "difference": 0.0796451416015625
+      },
+      "finalMeasurement": {
+        "generation": 2000,
+        "density": 0.0477294921875,
+        "activity": 0.02752685546875,
+        "difference": 0.07305908203125
+      }
+    },
+    {
+      "config": {
+        "rule": "B3/S23",
+        "width": 128,
+        "height": 128,
+        "generations": 2000,
+        "boundary": "wrap",
+        "density": 0.3,
+        "initialSeed": 5,
+        "noiseSeed": 1005,
+        "noiseProbability": 0.0001
+      },
+      "summary": {
+        "density": 0.0651658935546875,
+        "activity": 0.04786328125,
+        "difference": 0.1104947509765625
+      },
+      "finalMeasurement": {
+        "generation": 2000,
+        "density": 0.060791015625,
+        "activity": 0.0474853515625,
+        "difference": 0.10089111328125
+      }
+    },
+    {
+      "config": {
+        "rule": "B3/S23",
+        "width": 128,
+        "height": 128,
+        "generations": 2000,
+        "boundary": "wrap",
+        "density": 0.3,
+        "initialSeed": 6,
+        "noiseSeed": 1006,
+        "noiseProbability": 0.0001
+      },
+      "summary": {
+        "density": 0.0703074951171875,
+        "activity": 0.0500272216796875,
+        "difference": 0.106296630859375
+      },
+      "finalMeasurement": {
+        "generation": 2000,
+        "density": 0.06793212890625,
+        "activity": 0.0517578125,
+        "difference": 0.10406494140625
+      }
+    },
+    {
+      "config": {
+        "rule": "B3/S23",
+        "width": 128,
+        "height": 128,
+        "generations": 2000,
+        "boundary": "wrap",
+        "density": 0.3,
+        "initialSeed": 7,
+        "noiseSeed": 1007,
+        "noiseProbability": 0.0001
+      },
+      "summary": {
+        "density": 0.0678631591796875,
+        "activity": 0.0476885986328125,
+        "difference": 0.1048360595703125
+      },
+      "finalMeasurement": {
+        "generation": 2000,
+        "density": 0.0675048828125,
+        "activity": 0.04931640625,
+        "difference": 0.1065673828125
+      }
+    },
+    {
+      "config": {
+        "rule": "B3/S23",
+        "width": 128,
+        "height": 128,
+        "generations": 2000,
+        "boundary": "wrap",
+        "density": 0.3,
+        "initialSeed": 8,
+        "noiseSeed": 1008,
+        "noiseProbability": 0.0001
+      },
+      "summary": {
+        "density": 0.060962158203125,
+        "activity": 0.043415771484375,
+        "difference": 0.086701171875
+      },
+      "finalMeasurement": {
+        "generation": 2000,
+        "density": 0.05712890625,
+        "activity": 0.04132080078125,
+        "difference": 0.08258056640625
+      }
+    },
+    {
+      "config": {
+        "rule": "B3/S23",
+        "width": 128,
+        "height": 128,
+        "generations": 2000,
+        "boundary": "wrap",
+        "density": 0.3,
+        "initialSeed": 9,
+        "noiseSeed": 1009,
+        "noiseProbability": 0.0001
+      },
+      "summary": {
+        "density": 0.0607855224609375,
+        "activity": 0.042980712890625,
+        "difference": 0.0902747802734375
+      },
+      "finalMeasurement": {
+        "generation": 2000,
+        "density": 0.050048828125,
+        "activity": 0.0325927734375,
+        "difference": 0.0799560546875
+      }
+    },
+    {
+      "config": {
+        "rule": "B3/S23",
+        "width": 128,
+        "height": 128,
+        "generations": 2000,
+        "boundary": "wrap",
+        "density": 0.3,
+        "initialSeed": 10,
+        "noiseSeed": 1010,
+        "noiseProbability": 0.0001
+      },
+      "summary": {
+        "density": 0.0647503662109375,
+        "activity": 0.0464271240234375,
+        "difference": 0.090250732421875
+      },
+      "finalMeasurement": {
+        "generation": 2000,
+        "density": 0.06671142578125,
+        "activity": 0.05010986328125,
+        "difference": 0.09063720703125
+      }
+    },
+    {
+      "config": {
+        "rule": "B3/S23",
+        "width": 128,
+        "height": 128,
+        "generations": 2000,
+        "boundary": "wrap",
+        "density": 0.3,
+        "initialSeed": 1,
+        "noiseSeed": 1001,
+        "noiseProbability": 0.001
+      },
+      "summary": {
+        "density": 0.0695516357421875,
+        "activity": 0.056867919921875,
+        "difference": 0.10453759765625
+      },
+      "finalMeasurement": {
+        "generation": 2000,
+        "density": 0.06463623046875,
+        "activity": 0.05621337890625,
+        "difference": 0.10565185546875
+      }
+    },
+    {
+      "config": {
+        "rule": "B3/S23",
+        "width": 128,
+        "height": 128,
+        "generations": 2000,
+        "boundary": "wrap",
+        "density": 0.3,
+        "initialSeed": 2,
+        "noiseSeed": 1002,
+        "noiseProbability": 0.001
+      },
+      "summary": {
+        "density": 0.0714981689453125,
+        "activity": 0.058443115234375,
+        "difference": 0.096682861328125
+      },
+      "finalMeasurement": {
+        "generation": 2000,
+        "density": 0.08795166015625,
+        "activity": 0.0753173828125,
+        "difference": 0.11199951171875
+      }
+    },
+    {
+      "config": {
+        "rule": "B3/S23",
+        "width": 128,
+        "height": 128,
+        "generations": 2000,
+        "boundary": "wrap",
+        "density": 0.3,
+        "initialSeed": 3,
+        "noiseSeed": 1003,
+        "noiseProbability": 0.001
+      },
+      "summary": {
+        "density": 0.051013916015625,
+        "activity": 0.041417724609375,
+        "difference": 0.0948333740234375
+      },
+      "finalMeasurement": {
+        "generation": 2000,
+        "density": 0.064697265625,
+        "activity": 0.0504150390625,
+        "difference": 0.10308837890625
+      }
+    },
+    {
+      "config": {
+        "rule": "B3/S23",
+        "width": 128,
+        "height": 128,
+        "generations": 2000,
+        "boundary": "wrap",
+        "density": 0.3,
+        "initialSeed": 4,
+        "noiseSeed": 1004,
+        "noiseProbability": 0.001
+      },
+      "summary": {
+        "density": 0.07657666015625,
+        "activity": 0.06215771484375,
+        "difference": 0.102677734375
+      },
+      "finalMeasurement": {
+        "generation": 2000,
+        "density": 0.0657958984375,
+        "activity": 0.05499267578125,
+        "difference": 0.09100341796875
+      }
+    },
+    {
+      "config": {
+        "rule": "B3/S23",
+        "width": 128,
+        "height": 128,
+        "generations": 2000,
+        "boundary": "wrap",
+        "density": 0.3,
+        "initialSeed": 5,
+        "noiseSeed": 1005,
+        "noiseProbability": 0.001
+      },
+      "summary": {
+        "density": 0.06765576171875,
+        "activity": 0.055113525390625,
+        "difference": 0.11267236328125
+      },
+      "finalMeasurement": {
+        "generation": 2000,
+        "density": 0.068115234375,
+        "activity": 0.05413818359375,
+        "difference": 0.10882568359375
+      }
+    },
+    {
+      "config": {
+        "rule": "B3/S23",
+        "width": 128,
+        "height": 128,
+        "generations": 2000,
+        "boundary": "wrap",
+        "density": 0.3,
+        "initialSeed": 6,
+        "noiseSeed": 1006,
+        "noiseProbability": 0.001
+      },
+      "summary": {
+        "density": 0.0801959228515625,
+        "activity": 0.0657752685546875,
+        "difference": 0.11561865234375
+      },
+      "finalMeasurement": {
+        "generation": 2000,
+        "density": 0.083251953125,
+        "activity": 0.06658935546875,
+        "difference": 0.116943359375
+      }
+    },
+    {
+      "config": {
+        "rule": "B3/S23",
+        "width": 128,
+        "height": 128,
+        "generations": 2000,
+        "boundary": "wrap",
+        "density": 0.3,
+        "initialSeed": 7,
+        "noiseSeed": 1007,
+        "noiseProbability": 0.001
+      },
+      "summary": {
+        "density": 0.0708392333984375,
+        "activity": 0.057593505859375,
+        "difference": 0.1078863525390625
+      },
+      "finalMeasurement": {
+        "generation": 2000,
+        "density": 0.08319091796875,
+        "activity": 0.063232421875,
+        "difference": 0.11810302734375
+      }
+    },
+    {
+      "config": {
+        "rule": "B3/S23",
+        "width": 128,
+        "height": 128,
+        "generations": 2000,
+        "boundary": "wrap",
+        "density": 0.3,
+        "initialSeed": 8,
+        "noiseSeed": 1008,
+        "noiseProbability": 0.001
+      },
+      "summary": {
+        "density": 0.0815479736328125,
+        "activity": 0.06723681640625,
+        "difference": 0.1057825927734375
+      },
+      "finalMeasurement": {
+        "generation": 2000,
+        "density": 0.084228515625,
+        "activity": 0.072509765625,
+        "difference": 0.10711669921875
+      }
+    },
+    {
+      "config": {
+        "rule": "B3/S23",
+        "width": 128,
+        "height": 128,
+        "generations": 2000,
+        "boundary": "wrap",
+        "density": 0.3,
+        "initialSeed": 9,
+        "noiseSeed": 1009,
+        "noiseProbability": 0.001
+      },
+      "summary": {
+        "density": 0.065114990234375,
+        "activity": 0.052603271484375,
+        "difference": 0.094485595703125
+      },
+      "finalMeasurement": {
+        "generation": 2000,
+        "density": 0.07427978515625,
+        "activity": 0.05474853515625,
+        "difference": 0.10223388671875
+      }
+    },
+    {
+      "config": {
+        "rule": "B3/S23",
+        "width": 128,
+        "height": 128,
+        "generations": 2000,
+        "boundary": "wrap",
+        "density": 0.3,
+        "initialSeed": 10,
+        "noiseSeed": 1010,
+        "noiseProbability": 0.001
+      },
+      "summary": {
+        "density": 0.0890537109375,
+        "activity": 0.073039306640625,
+        "difference": 0.1132703857421875
+      },
+      "finalMeasurement": {
+        "generation": 2000,
+        "density": 0.082275390625,
+        "activity": 0.0654296875,
+        "difference": 0.1055908203125
+      }
+    },
+    {
+      "config": {
+        "rule": "B3/S23",
+        "width": 128,
+        "height": 128,
+        "generations": 2000,
+        "boundary": "wrap",
+        "density": 0.3,
+        "initialSeed": 1,
+        "noiseSeed": 1001,
+        "noiseProbability": 0.01
+      },
+      "summary": {
+        "density": 0.1446798095703125,
+        "activity": 0.137065673828125,
+        "difference": 0.174517578125
+      },
+      "finalMeasurement": {
+        "generation": 2000,
+        "density": 0.140380859375,
+        "activity": 0.138671875,
+        "difference": 0.1748046875
+      }
+    },
+    {
+      "config": {
+        "rule": "B3/S23",
+        "width": 128,
+        "height": 128,
+        "generations": 2000,
+        "boundary": "wrap",
+        "density": 0.3,
+        "initialSeed": 2,
+        "noiseSeed": 1002,
+        "noiseProbability": 0.01
+      },
+      "summary": {
+        "density": 0.1444234619140625,
+        "activity": 0.1368768310546875,
+        "difference": 0.165452392578125
+      },
+      "finalMeasurement": {
+        "generation": 2000,
+        "density": 0.1470947265625,
+        "activity": 0.14105224609375,
+        "difference": 0.1671142578125
+      }
+    },
+    {
+      "config": {
+        "rule": "B3/S23",
+        "width": 128,
+        "height": 128,
+        "generations": 2000,
+        "boundary": "wrap",
+        "density": 0.3,
+        "initialSeed": 3,
+        "noiseSeed": 1003,
+        "noiseProbability": 0.01
+      },
+      "summary": {
+        "density": 0.1301239013671875,
+        "activity": 0.1240833740234375,
+        "difference": 0.166194091796875
+      },
+      "finalMeasurement": {
+        "generation": 2000,
+        "density": 0.1187744140625,
+        "activity": 0.114990234375,
+        "difference": 0.15155029296875
+      }
+    },
+    {
+      "config": {
+        "rule": "B3/S23",
+        "width": 128,
+        "height": 128,
+        "generations": 2000,
+        "boundary": "wrap",
+        "density": 0.3,
+        "initialSeed": 4,
+        "noiseSeed": 1004,
+        "noiseProbability": 0.01
+      },
+      "summary": {
+        "density": 0.1362606201171875,
+        "activity": 0.129439453125,
+        "difference": 0.1583385009765625
+      },
+      "finalMeasurement": {
+        "generation": 2000,
+        "density": 0.1292724609375,
+        "activity": 0.12420654296875,
+        "difference": 0.14849853515625
+      }
+    },
+    {
+      "config": {
+        "rule": "B3/S23",
+        "width": 128,
+        "height": 128,
+        "generations": 2000,
+        "boundary": "wrap",
+        "density": 0.3,
+        "initialSeed": 5,
+        "noiseSeed": 1005,
+        "noiseProbability": 0.01
+      },
+      "summary": {
+        "density": 0.12693701171875,
+        "activity": 0.1213079833984375,
+        "difference": 0.16483935546875
+      },
+      "finalMeasurement": {
+        "generation": 2000,
+        "density": 0.13262939453125,
+        "activity": 0.13067626953125,
+        "difference": 0.1651611328125
+      }
+    },
+    {
+      "config": {
+        "rule": "B3/S23",
+        "width": 128,
+        "height": 128,
+        "generations": 2000,
+        "boundary": "wrap",
+        "density": 0.3,
+        "initialSeed": 6,
+        "noiseSeed": 1006,
+        "noiseProbability": 0.01
+      },
+      "summary": {
+        "density": 0.1369937744140625,
+        "activity": 0.13036376953125,
+        "difference": 0.16800634765625
+      },
+      "finalMeasurement": {
+        "generation": 2000,
+        "density": 0.13226318359375,
+        "activity": 0.136474609375,
+        "difference": 0.16131591796875
+      }
+    },
+    {
+      "config": {
+        "rule": "B3/S23",
+        "width": 128,
+        "height": 128,
+        "generations": 2000,
+        "boundary": "wrap",
+        "density": 0.3,
+        "initialSeed": 7,
+        "noiseSeed": 1007,
+        "noiseProbability": 0.01
+      },
+      "summary": {
+        "density": 0.1405965576171875,
+        "activity": 0.1333394775390625,
+        "difference": 0.1719359130859375
+      },
+      "finalMeasurement": {
+        "generation": 2000,
+        "density": 0.13836669921875,
+        "activity": 0.13214111328125,
+        "difference": 0.17254638671875
+      }
+    },
+    {
+      "config": {
+        "rule": "B3/S23",
+        "width": 128,
+        "height": 128,
+        "generations": 2000,
+        "boundary": "wrap",
+        "density": 0.3,
+        "initialSeed": 8,
+        "noiseSeed": 1008,
+        "noiseProbability": 0.01
+      },
+      "summary": {
+        "density": 0.1381026611328125,
+        "activity": 0.131314453125,
+        "difference": 0.1590782470703125
+      },
+      "finalMeasurement": {
+        "generation": 2000,
+        "density": 0.1260986328125,
+        "activity": 0.12042236328125,
+        "difference": 0.14959716796875
+      }
+    },
+    {
+      "config": {
+        "rule": "B3/S23",
+        "width": 128,
+        "height": 128,
+        "generations": 2000,
+        "boundary": "wrap",
+        "density": 0.3,
+        "initialSeed": 9,
+        "noiseSeed": 1009,
+        "noiseProbability": 0.01
+      },
+      "summary": {
+        "density": 0.13675341796875,
+        "activity": 0.1299110107421875,
+        "difference": 0.16134228515625
+      },
+      "finalMeasurement": {
+        "generation": 2000,
+        "density": 0.157470703125,
+        "activity": 0.14508056640625,
+        "difference": 0.179931640625
+      }
+    },
+    {
+      "config": {
+        "rule": "B3/S23",
+        "width": 128,
+        "height": 128,
+        "generations": 2000,
+        "boundary": "wrap",
+        "density": 0.3,
+        "initialSeed": 10,
+        "noiseSeed": 1010,
+        "noiseProbability": 0.01
+      },
+      "summary": {
+        "density": 0.1335087890625,
+        "activity": 0.1269718017578125,
+        "difference": 0.1559217529296875
+      },
+      "finalMeasurement": {
+        "generation": 2000,
+        "density": 0.14093017578125,
+        "activity": 0.1309814453125,
+        "difference": 0.16302490234375
+      }
+    },
+    {
+      "config": {
+        "rule": "B3/S23",
+        "width": 128,
+        "height": 128,
+        "generations": 2000,
+        "boundary": "wrap",
+        "density": 0.3,
+        "initialSeed": 1,
+        "noiseSeed": 1001,
+        "noiseProbability": 0.05
+      },
+      "summary": {
+        "density": 0.31942236328125,
+        "activity": 0.3271468505859375,
+        "difference": 0.3344490966796875
+      },
+      "finalMeasurement": {
+        "generation": 2000,
+        "density": 0.3197021484375,
+        "activity": 0.34130859375,
+        "difference": 0.335693359375
+      }
+    },
+    {
+      "config": {
+        "rule": "B3/S23",
+        "width": 128,
+        "height": 128,
+        "generations": 2000,
+        "boundary": "wrap",
+        "density": 0.3,
+        "initialSeed": 2,
+        "noiseSeed": 1002,
+        "noiseProbability": 0.05
+      },
+      "summary": {
+        "density": 0.3192979736328125,
+        "activity": 0.3268768310546875,
+        "difference": 0.329927490234375
+      },
+      "finalMeasurement": {
+        "generation": 2000,
+        "density": 0.32708740234375,
+        "activity": 0.33135986328125,
+        "difference": 0.33880615234375
+      }
+    },
+    {
+      "config": {
+        "rule": "B3/S23",
+        "width": 128,
+        "height": 128,
+        "generations": 2000,
+        "boundary": "wrap",
+        "density": 0.3,
+        "initialSeed": 3,
+        "noiseSeed": 1003,
+        "noiseProbability": 0.05
+      },
+      "summary": {
+        "density": 0.318841064453125,
+        "activity": 0.326366455078125,
+        "difference": 0.3366258544921875
+      },
+      "finalMeasurement": {
+        "generation": 2000,
+        "density": 0.32415771484375,
+        "activity": 0.3216552734375,
+        "difference": 0.3399658203125
+      }
+    },
+    {
+      "config": {
+        "rule": "B3/S23",
+        "width": 128,
+        "height": 128,
+        "generations": 2000,
+        "boundary": "wrap",
+        "density": 0.3,
+        "initialSeed": 4,
+        "noiseSeed": 1004,
+        "noiseProbability": 0.05
+      },
+      "summary": {
+        "density": 0.3196112060546875,
+        "activity": 0.326913818359375,
+        "difference": 0.3305333251953125
+      },
+      "finalMeasurement": {
+        "generation": 2000,
+        "density": 0.3094482421875,
+        "activity": 0.32196044921875,
+        "difference": 0.31903076171875
+      }
+    },
+    {
+      "config": {
+        "rule": "B3/S23",
+        "width": 128,
+        "height": 128,
+        "generations": 2000,
+        "boundary": "wrap",
+        "density": 0.3,
+        "initialSeed": 5,
+        "noiseSeed": 1005,
+        "noiseProbability": 0.05
+      },
+      "summary": {
+        "density": 0.3203209228515625,
+        "activity": 0.327186767578125,
+        "difference": 0.3386456298828125
+      },
+      "finalMeasurement": {
+        "generation": 2000,
+        "density": 0.31829833984375,
+        "activity": 0.33642578125,
+        "difference": 0.337646484375
+      }
+    },
+    {
+      "config": {
+        "rule": "B3/S23",
+        "width": 128,
+        "height": 128,
+        "generations": 2000,
+        "boundary": "wrap",
+        "density": 0.3,
+        "initialSeed": 6,
+        "noiseSeed": 1006,
+        "noiseProbability": 0.05
+      },
+      "summary": {
+        "density": 0.3195985107421875,
+        "activity": 0.3273333740234375,
+        "difference": 0.334837890625
+      },
+      "finalMeasurement": {
+        "generation": 2000,
+        "density": 0.3179931640625,
+        "activity": 0.326904296875,
+        "difference": 0.33349609375
+      }
+    },
+    {
+      "config": {
+        "rule": "B3/S23",
+        "width": 128,
+        "height": 128,
+        "generations": 2000,
+        "boundary": "wrap",
+        "density": 0.3,
+        "initialSeed": 7,
+        "noiseSeed": 1007,
+        "noiseProbability": 0.05
+      },
+      "summary": {
+        "density": 0.3191126708984375,
+        "activity": 0.326641357421875,
+        "difference": 0.3347508544921875
+      },
+      "finalMeasurement": {
+        "generation": 2000,
+        "density": 0.318359375,
+        "activity": 0.32135009765625,
+        "difference": 0.334716796875
+      }
+    },
+    {
+      "config": {
+        "rule": "B3/S23",
+        "width": 128,
+        "height": 128,
+        "generations": 2000,
+        "boundary": "wrap",
+        "density": 0.3,
+        "initialSeed": 8,
+        "noiseSeed": 1008,
+        "noiseProbability": 0.05
+      },
+      "summary": {
+        "density": 0.3195543212890625,
+        "activity": 0.326918212890625,
+        "difference": 0.3299537353515625
+      },
+      "finalMeasurement": {
+        "generation": 2000,
+        "density": 0.3216552734375,
+        "activity": 0.32666015625,
+        "difference": 0.33306884765625
+      }
+    },
+    {
+      "config": {
+        "rule": "B3/S23",
+        "width": 128,
+        "height": 128,
+        "generations": 2000,
+        "boundary": "wrap",
+        "density": 0.3,
+        "initialSeed": 9,
+        "noiseSeed": 1009,
+        "noiseProbability": 0.05
+      },
+      "summary": {
+        "density": 0.319189697265625,
+        "activity": 0.326736083984375,
+        "difference": 0.331246826171875
+      },
+      "finalMeasurement": {
+        "generation": 2000,
+        "density": 0.322265625,
+        "activity": 0.33074951171875,
+        "difference": 0.3375244140625
+      }
+    },
+    {
+      "config": {
+        "rule": "B3/S23",
+        "width": 128,
+        "height": 128,
+        "generations": 2000,
+        "boundary": "wrap",
+        "density": 0.3,
+        "initialSeed": 10,
+        "noiseSeed": 1010,
+        "noiseProbability": 0.05
+      },
+      "summary": {
+        "density": 0.31947119140625,
+        "activity": 0.3267879638671875,
+        "difference": 0.3301920166015625
+      },
+      "finalMeasurement": {
+        "generation": 2000,
+        "density": 0.3177490234375,
+        "activity": 0.3238525390625,
+        "difference": 0.3292236328125
+      }
+    },
+    {
+      "config": {
+        "rule": "B36/S23",
+        "width": 128,
+        "height": 128,
+        "generations": 2000,
+        "boundary": "wrap",
+        "density": 0.3,
+        "initialSeed": 1,
+        "noiseSeed": 1001,
+        "noiseProbability": 0
+      },
+      "summary": {
+        "density": 0.02227783203125,
+        "activity": 0.00244140625,
+        "difference": 0
+      },
+      "finalMeasurement": {
+        "generation": 2000,
+        "density": 0.02227783203125,
+        "activity": 0.00244140625,
+        "difference": 0
+      }
+    },
+    {
+      "config": {
+        "rule": "B36/S23",
+        "width": 128,
+        "height": 128,
+        "generations": 2000,
+        "boundary": "wrap",
+        "density": 0.3,
+        "initialSeed": 2,
+        "noiseSeed": 1002,
+        "noiseProbability": 0
+      },
+      "summary": {
+        "density": 0.02313232421875,
+        "activity": 0.00244140625,
+        "difference": 0
+      },
+      "finalMeasurement": {
+        "generation": 2000,
+        "density": 0.02313232421875,
+        "activity": 0.00244140625,
+        "difference": 0
+      }
+    },
+    {
+      "config": {
+        "rule": "B36/S23",
+        "width": 128,
+        "height": 128,
+        "generations": 2000,
+        "boundary": "wrap",
+        "density": 0.3,
+        "initialSeed": 3,
+        "noiseSeed": 1003,
+        "noiseProbability": 0
+      },
+      "summary": {
+        "density": 0.0206324462890625,
+        "activity": 0.0026983642578125,
+        "difference": 0
+      },
+      "finalMeasurement": {
+        "generation": 2000,
+        "density": 0.0203857421875,
+        "activity": 0.00244140625,
+        "difference": 0
+      }
+    },
+    {
+      "config": {
+        "rule": "B36/S23",
+        "width": 128,
+        "height": 128,
+        "generations": 2000,
+        "boundary": "wrap",
+        "density": 0.3,
+        "initialSeed": 4,
+        "noiseSeed": 1004,
+        "noiseProbability": 0
+      },
+      "summary": {
+        "density": 0.02276611328125,
+        "activity": 0.0029296875,
+        "difference": 0
+      },
+      "finalMeasurement": {
+        "generation": 2000,
+        "density": 0.02276611328125,
+        "activity": 0.0029296875,
+        "difference": 0
+      }
+    },
+    {
+      "config": {
+        "rule": "B36/S23",
+        "width": 128,
+        "height": 128,
+        "generations": 2000,
+        "boundary": "wrap",
+        "density": 0.3,
+        "initialSeed": 5,
+        "noiseSeed": 1005,
+        "noiseProbability": 0
+      },
+      "summary": {
+        "density": 0.0218505859375,
+        "activity": 0.0025634765625,
+        "difference": 0
+      },
+      "finalMeasurement": {
+        "generation": 2000,
+        "density": 0.02178955078125,
+        "activity": 0.0025634765625,
+        "difference": 0
+      }
+    },
+    {
+      "config": {
+        "rule": "B36/S23",
+        "width": 128,
+        "height": 128,
+        "generations": 2000,
+        "boundary": "wrap",
+        "density": 0.3,
+        "initialSeed": 6,
+        "noiseSeed": 1006,
+        "noiseProbability": 0
+      },
+      "summary": {
+        "density": 0.01849365234375,
+        "activity": 0.001708984375,
+        "difference": 0
+      },
+      "finalMeasurement": {
+        "generation": 2000,
+        "density": 0.01849365234375,
+        "activity": 0.001708984375,
+        "difference": 0
+      }
+    },
+    {
+      "config": {
+        "rule": "B36/S23",
+        "width": 128,
+        "height": 128,
+        "generations": 2000,
+        "boundary": "wrap",
+        "density": 0.3,
+        "initialSeed": 7,
+        "noiseSeed": 1007,
+        "noiseProbability": 0
+      },
+      "summary": {
+        "density": 0.01824951171875,
+        "activity": 0.002197265625,
+        "difference": 0
+      },
+      "finalMeasurement": {
+        "generation": 2000,
+        "density": 0.01824951171875,
+        "activity": 0.002197265625,
+        "difference": 0
+      }
+    },
+    {
+      "config": {
+        "rule": "B36/S23",
+        "width": 128,
+        "height": 128,
+        "generations": 2000,
+        "boundary": "wrap",
+        "density": 0.3,
+        "initialSeed": 8,
+        "noiseSeed": 1008,
+        "noiseProbability": 0
+      },
+      "summary": {
+        "density": 0.015794677734375,
+        "activity": 0.0020543212890625,
+        "difference": 0
+      },
+      "finalMeasurement": {
+        "generation": 2000,
+        "density": 0.01568603515625,
+        "activity": 0.001953125,
+        "difference": 0
+      }
+    },
+    {
+      "config": {
+        "rule": "B36/S23",
+        "width": 128,
+        "height": 128,
+        "generations": 2000,
+        "boundary": "wrap",
+        "density": 0.3,
+        "initialSeed": 9,
+        "noiseSeed": 1009,
+        "noiseProbability": 0
+      },
+      "summary": {
+        "density": 0.02020263671875,
+        "activity": 0.002197265625,
+        "difference": 0
+      },
+      "finalMeasurement": {
+        "generation": 2000,
+        "density": 0.02020263671875,
+        "activity": 0.002197265625,
+        "difference": 0
+      }
+    },
+    {
+      "config": {
+        "rule": "B36/S23",
+        "width": 128,
+        "height": 128,
+        "generations": 2000,
+        "boundary": "wrap",
+        "density": 0.3,
+        "initialSeed": 10,
+        "noiseSeed": 1010,
+        "noiseProbability": 0
+      },
+      "summary": {
+        "density": 0.0262662353515625,
+        "activity": 0.0082886962890625,
+        "difference": 0
+      },
+      "finalMeasurement": {
+        "generation": 2000,
+        "density": 0.02056884765625,
+        "activity": 0.0029296875,
+        "difference": 0
+      }
+    },
+    {
+      "config": {
+        "rule": "B36/S23",
+        "width": 128,
+        "height": 128,
+        "generations": 2000,
+        "boundary": "wrap",
+        "density": 0.3,
+        "initialSeed": 1,
+        "noiseSeed": 1001,
+        "noiseProbability": 0.0001
+      },
+      "summary": {
+        "density": 0.0080107421875,
+        "activity": 0.0029835205078125,
+        "difference": 0.02991015625
+      },
+      "finalMeasurement": {
+        "generation": 2000,
+        "density": 0.01214599609375,
+        "activity": 0.00677490234375,
+        "difference": 0.0341796875
+      }
+    },
+    {
+      "config": {
+        "rule": "B36/S23",
+        "width": 128,
+        "height": 128,
+        "generations": 2000,
+        "boundary": "wrap",
+        "density": 0.3,
+        "initialSeed": 2,
+        "noiseSeed": 1002,
+        "noiseProbability": 0.0001
+      },
+      "summary": {
+        "density": 0.02530517578125,
+        "activity": 0.0166251220703125,
+        "difference": 0.04715087890625
+      },
+      "finalMeasurement": {
+        "generation": 2000,
+        "density": 0.02947998046875,
+        "activity": 0.01910400390625,
+        "difference": 0.0513916015625
+      }
+    },
+    {
+      "config": {
+        "rule": "B36/S23",
+        "width": 128,
+        "height": 128,
+        "generations": 2000,
+        "boundary": "wrap",
+        "density": 0.3,
+        "initialSeed": 3,
+        "noiseSeed": 1003,
+        "noiseProbability": 0.0001
+      },
+      "summary": {
+        "density": 0.0157369384765625,
+        "activity": 0.009376708984375,
+        "difference": 0.0357255859375
+      },
+      "finalMeasurement": {
+        "generation": 2000,
+        "density": 0.01287841796875,
+        "activity": 0.00775146484375,
+        "difference": 0.03277587890625
+      }
+    },
+    {
+      "config": {
+        "rule": "B36/S23",
+        "width": 128,
+        "height": 128,
+        "generations": 2000,
+        "boundary": "wrap",
+        "density": 0.3,
+        "initialSeed": 4,
+        "noiseSeed": 1004,
+        "noiseProbability": 0.0001
+      },
+      "summary": {
+        "density": 0.0105279541015625,
+        "activity": 0.0057330322265625,
+        "difference": 0.0327403564453125
+      },
+      "finalMeasurement": {
+        "generation": 2000,
+        "density": 0.01031494140625,
+        "activity": 0.00579833984375,
+        "difference": 0.0323486328125
+      }
+    },
+    {
+      "config": {
+        "rule": "B36/S23",
+        "width": 128,
+        "height": 128,
+        "generations": 2000,
+        "boundary": "wrap",
+        "density": 0.3,
+        "initialSeed": 5,
+        "noiseSeed": 1005,
+        "noiseProbability": 0.0001
+      },
+      "summary": {
+        "density": 0.0170589599609375,
+        "activity": 0.0102738037109375,
+        "difference": 0.0379534912109375
+      },
+      "finalMeasurement": {
+        "generation": 2000,
+        "density": 0.01336669921875,
+        "activity": 0.00732421875,
+        "difference": 0.0343017578125
+      }
+    },
+    {
+      "config": {
+        "rule": "B36/S23",
+        "width": 128,
+        "height": 128,
+        "generations": 2000,
+        "boundary": "wrap",
+        "density": 0.3,
+        "initialSeed": 6,
+        "noiseSeed": 1006,
+        "noiseProbability": 0.0001
+      },
+      "summary": {
+        "density": 0.0247750244140625,
+        "activity": 0.018185302734375,
+        "difference": 0.0424134521484375
+      },
+      "finalMeasurement": {
+        "generation": 2000,
+        "density": 0.03753662109375,
+        "activity": 0.02911376953125,
+        "difference": 0.0545654296875
+      }
+    },
+    {
+      "config": {
+        "rule": "B36/S23",
+        "width": 128,
+        "height": 128,
+        "generations": 2000,
+        "boundary": "wrap",
+        "density": 0.3,
+        "initialSeed": 7,
+        "noiseSeed": 1007,
+        "noiseProbability": 0.0001
+      },
+      "summary": {
+        "density": 0.0055816650390625,
+        "activity": 0.0020838623046875,
+        "difference": 0.0238062744140625
+      },
+      "finalMeasurement": {
+        "generation": 2000,
+        "density": 0.00567626953125,
+        "activity": 0.0020751953125,
+        "difference": 0.0238037109375
+      }
+    },
+    {
+      "config": {
+        "rule": "B36/S23",
+        "width": 128,
+        "height": 128,
+        "generations": 2000,
+        "boundary": "wrap",
+        "density": 0.3,
+        "initialSeed": 8,
+        "noiseSeed": 1008,
+        "noiseProbability": 0.0001
+      },
+      "summary": {
+        "density": 0.01862109375,
+        "activity": 0.01275439453125,
+        "difference": 0.033860595703125
+      },
+      "finalMeasurement": {
+        "generation": 2000,
+        "density": 0.0068359375,
+        "activity": 0.0015869140625,
+        "difference": 0.02252197265625
+      }
+    },
+    {
+      "config": {
+        "rule": "B36/S23",
+        "width": 128,
+        "height": 128,
+        "generations": 2000,
+        "boundary": "wrap",
+        "density": 0.3,
+        "initialSeed": 9,
+        "noiseSeed": 1009,
+        "noiseProbability": 0.0001
+      },
+      "summary": {
+        "density": 0.00672509765625,
+        "activity": 0.0037115478515625,
+        "difference": 0.026739990234375
+      },
+      "finalMeasurement": {
+        "generation": 2000,
+        "density": 0.0101318359375,
+        "activity": 0.0069580078125,
+        "difference": 0.02984619140625
+      }
+    },
+    {
+      "config": {
+        "rule": "B36/S23",
+        "width": 128,
+        "height": 128,
+        "generations": 2000,
+        "boundary": "wrap",
+        "density": 0.3,
+        "initialSeed": 10,
+        "noiseSeed": 1010,
+        "noiseProbability": 0.0001
+      },
+      "summary": {
+        "density": 0.017466796875,
+        "activity": 0.01056494140625,
+        "difference": 0.0423414306640625
+      },
+      "finalMeasurement": {
+        "generation": 2000,
+        "density": 0.0145263671875,
+        "activity": 0.00689697265625,
+        "difference": 0.03375244140625
+      }
+    },
+    {
+      "config": {
+        "rule": "B36/S23",
+        "width": 128,
+        "height": 128,
+        "generations": 2000,
+        "boundary": "wrap",
+        "density": 0.3,
+        "initialSeed": 1,
+        "noiseSeed": 1001,
+        "noiseProbability": 0.001
+      },
+      "summary": {
+        "density": 0.0275880126953125,
+        "activity": 0.024921875,
+        "difference": 0.0483699951171875
+      },
+      "finalMeasurement": {
+        "generation": 2000,
+        "density": 0.01708984375,
+        "activity": 0.01580810546875,
+        "difference": 0.03887939453125
+      }
+    },
+    {
+      "config": {
+        "rule": "B36/S23",
+        "width": 128,
+        "height": 128,
+        "generations": 2000,
+        "boundary": "wrap",
+        "density": 0.3,
+        "initialSeed": 2,
+        "noiseSeed": 1002,
+        "noiseProbability": 0.001
+      },
+      "summary": {
+        "density": 0.036926513671875,
+        "activity": 0.0329429931640625,
+        "difference": 0.057872802734375
+      },
+      "finalMeasurement": {
+        "generation": 2000,
+        "density": 0.03887939453125,
+        "activity": 0.03753662109375,
+        "difference": 0.059326171875
+      }
+    },
+    {
+      "config": {
+        "rule": "B36/S23",
+        "width": 128,
+        "height": 128,
+        "generations": 2000,
+        "boundary": "wrap",
+        "density": 0.3,
+        "initialSeed": 3,
+        "noiseSeed": 1003,
+        "noiseProbability": 0.001
+      },
+      "summary": {
+        "density": 0.062361083984375,
+        "activity": 0.0548857421875,
+        "difference": 0.0804171142578125
+      },
+      "finalMeasurement": {
+        "generation": 2000,
+        "density": 0.0572509765625,
+        "activity": 0.0484619140625,
+        "difference": 0.0755615234375
+      }
+    },
+    {
+      "config": {
+        "rule": "B36/S23",
+        "width": 128,
+        "height": 128,
+        "generations": 2000,
+        "boundary": "wrap",
+        "density": 0.3,
+        "initialSeed": 4,
+        "noiseSeed": 1004,
+        "noiseProbability": 0.001
+      },
+      "summary": {
+        "density": 0.0199149169921875,
+        "activity": 0.01747265625,
+        "difference": 0.0419822998046875
+      },
+      "finalMeasurement": {
+        "generation": 2000,
+        "density": 0.0113525390625,
+        "activity": 0.00933837890625,
+        "difference": 0.03411865234375
+      }
+    },
+    {
+      "config": {
+        "rule": "B36/S23",
+        "width": 128,
+        "height": 128,
+        "generations": 2000,
+        "boundary": "wrap",
+        "density": 0.3,
+        "initialSeed": 5,
+        "noiseSeed": 1005,
+        "noiseProbability": 0.001
+      },
+      "summary": {
+        "density": 0.0208570556640625,
+        "activity": 0.0184598388671875,
+        "difference": 0.0417130126953125
+      },
+      "finalMeasurement": {
+        "generation": 2000,
+        "density": 0.01458740234375,
+        "activity": 0.0128173828125,
+        "difference": 0.0360107421875
+      }
+    },
+    {
+      "config": {
+        "rule": "B36/S23",
+        "width": 128,
+        "height": 128,
+        "generations": 2000,
+        "boundary": "wrap",
+        "density": 0.3,
+        "initialSeed": 6,
+        "noiseSeed": 1006,
+        "noiseProbability": 0.001
+      },
+      "summary": {
+        "density": 0.0063897705078125,
+        "activity": 0.006156494140625,
+        "difference": 0.0246295166015625
+      },
+      "finalMeasurement": {
+        "generation": 2000,
+        "density": 0.00347900390625,
+        "activity": 0.00518798828125,
+        "difference": 0.02197265625
+      }
+    },
+    {
+      "config": {
+        "rule": "B36/S23",
+        "width": 128,
+        "height": 128,
+        "generations": 2000,
+        "boundary": "wrap",
+        "density": 0.3,
+        "initialSeed": 7,
+        "noiseSeed": 1007,
+        "noiseProbability": 0.001
+      },
+      "summary": {
+        "density": 0.0570506591796875,
+        "activity": 0.049406982421875,
+        "difference": 0.0729022216796875
+      },
+      "finalMeasurement": {
+        "generation": 2000,
+        "density": 0.04766845703125,
+        "activity": 0.0445556640625,
+        "difference": 0.0638427734375
+      }
+    },
+    {
+      "config": {
+        "rule": "B36/S23",
+        "width": 128,
+        "height": 128,
+        "generations": 2000,
+        "boundary": "wrap",
+        "density": 0.3,
+        "initialSeed": 8,
+        "noiseSeed": 1008,
+        "noiseProbability": 0.001
+      },
+      "summary": {
+        "density": 0.039954833984375,
+        "activity": 0.034358154296875,
+        "difference": 0.0545244140625
+      },
+      "finalMeasurement": {
+        "generation": 2000,
+        "density": 0.038330078125,
+        "activity": 0.0308837890625,
+        "difference": 0.05267333984375
+      }
+    },
+    {
+      "config": {
+        "rule": "B36/S23",
+        "width": 128,
+        "height": 128,
+        "generations": 2000,
+        "boundary": "wrap",
+        "density": 0.3,
+        "initialSeed": 9,
+        "noiseSeed": 1009,
+        "noiseProbability": 0.001
+      },
+      "summary": {
+        "density": 0.041247314453125,
+        "activity": 0.03659375,
+        "difference": 0.06025
+      },
+      "finalMeasurement": {
+        "generation": 2000,
+        "density": 0.0606689453125,
+        "activity": 0.05755615234375,
+        "difference": 0.07952880859375
+      }
+    },
+    {
+      "config": {
+        "rule": "B36/S23",
+        "width": 128,
+        "height": 128,
+        "generations": 2000,
+        "boundary": "wrap",
+        "density": 0.3,
+        "initialSeed": 10,
+        "noiseSeed": 1010,
+        "noiseProbability": 0.001
+      },
+      "summary": {
+        "density": 0.01982861328125,
+        "activity": 0.0181429443359375,
+        "difference": 0.0453812255859375
+      },
+      "finalMeasurement": {
+        "generation": 2000,
+        "density": 0.0166015625,
+        "activity": 0.01434326171875,
+        "difference": 0.03704833984375
+      }
+    },
+    {
+      "config": {
+        "rule": "B36/S23",
+        "width": 128,
+        "height": 128,
+        "generations": 2000,
+        "boundary": "wrap",
+        "density": 0.3,
+        "initialSeed": 1,
+        "noiseSeed": 1001,
+        "noiseProbability": 0.01
+      },
+      "summary": {
+        "density": 0.1918277587890625,
+        "activity": 0.1895775146484375,
+        "difference": 0.2060103759765625
+      },
+      "finalMeasurement": {
+        "generation": 2000,
+        "density": 0.1990966796875,
+        "activity": 0.197509765625,
+        "difference": 0.21331787109375
+      }
+    },
+    {
+      "config": {
+        "rule": "B36/S23",
+        "width": 128,
+        "height": 128,
+        "generations": 2000,
+        "boundary": "wrap",
+        "density": 0.3,
+        "initialSeed": 2,
+        "noiseSeed": 1002,
+        "noiseProbability": 0.01
+      },
+      "summary": {
+        "density": 0.1987042236328125,
+        "activity": 0.1959100341796875,
+        "difference": 0.2126778564453125
+      },
+      "finalMeasurement": {
+        "generation": 2000,
+        "density": 0.21612548828125,
+        "activity": 0.2081298828125,
+        "difference": 0.23095703125
+      }
+    },
+    {
+      "config": {
+        "rule": "B36/S23",
+        "width": 128,
+        "height": 128,
+        "generations": 2000,
+        "boundary": "wrap",
+        "density": 0.3,
+        "initialSeed": 3,
+        "noiseSeed": 1003,
+        "noiseProbability": 0.01
+      },
+      "summary": {
+        "density": 0.192833740234375,
+        "activity": 0.190594970703125,
+        "difference": 0.2053582763671875
+      },
+      "finalMeasurement": {
+        "generation": 2000,
+        "density": 0.20068359375,
+        "activity": 0.19891357421875,
+        "difference": 0.2119140625
+      }
+    },
+    {
+      "config": {
+        "rule": "B36/S23",
+        "width": 128,
+        "height": 128,
+        "generations": 2000,
+        "boundary": "wrap",
+        "density": 0.3,
+        "initialSeed": 4,
+        "noiseSeed": 1004,
+        "noiseProbability": 0.01
+      },
+      "summary": {
+        "density": 0.1992969970703125,
+        "activity": 0.1967164306640625,
+        "difference": 0.2126888427734375
+      },
+      "finalMeasurement": {
+        "generation": 2000,
+        "density": 0.2154541015625,
+        "activity": 0.21917724609375,
+        "difference": 0.22930908203125
+      }
+    },
+    {
+      "config": {
+        "rule": "B36/S23",
+        "width": 128,
+        "height": 128,
+        "generations": 2000,
+        "boundary": "wrap",
+        "density": 0.3,
+        "initialSeed": 5,
+        "noiseSeed": 1005,
+        "noiseProbability": 0.01
+      },
+      "summary": {
+        "density": 0.1930784912109375,
+        "activity": 0.1910789794921875,
+        "difference": 0.2068822021484375
+      },
+      "finalMeasurement": {
+        "generation": 2000,
+        "density": 0.18701171875,
+        "activity": 0.17828369140625,
+        "difference": 0.20159912109375
+      }
+    },
+    {
+      "config": {
+        "rule": "B36/S23",
+        "width": 128,
+        "height": 128,
+        "generations": 2000,
+        "boundary": "wrap",
+        "density": 0.3,
+        "initialSeed": 6,
+        "noiseSeed": 1006,
+        "noiseProbability": 0.01
+      },
+      "summary": {
+        "density": 0.2008455810546875,
+        "activity": 0.1986292724609375,
+        "difference": 0.2117535400390625
+      },
+      "finalMeasurement": {
+        "generation": 2000,
+        "density": 0.19122314453125,
+        "activity": 0.186279296875,
+        "difference": 0.2021484375
+      }
+    },
+    {
+      "config": {
+        "rule": "B36/S23",
+        "width": 128,
+        "height": 128,
+        "generations": 2000,
+        "boundary": "wrap",
+        "density": 0.3,
+        "initialSeed": 7,
+        "noiseSeed": 1007,
+        "noiseProbability": 0.01
+      },
+      "summary": {
+        "density": 0.19579541015625,
+        "activity": 0.1937275390625,
+        "difference": 0.2067236328125
+      },
+      "finalMeasurement": {
+        "generation": 2000,
+        "density": 0.1876220703125,
+        "activity": 0.181884765625,
+        "difference": 0.19952392578125
+      }
+    },
+    {
+      "config": {
+        "rule": "B36/S23",
+        "width": 128,
+        "height": 128,
+        "generations": 2000,
+        "boundary": "wrap",
+        "density": 0.3,
+        "initialSeed": 8,
+        "noiseSeed": 1008,
+        "noiseProbability": 0.01
+      },
+      "summary": {
+        "density": 0.194815673828125,
+        "activity": 0.1926810302734375,
+        "difference": 0.204368408203125
+      },
+      "finalMeasurement": {
+        "generation": 2000,
+        "density": 0.1943359375,
+        "activity": 0.1923828125,
+        "difference": 0.20367431640625
+      }
+    },
+    {
+      "config": {
+        "rule": "B36/S23",
+        "width": 128,
+        "height": 128,
+        "generations": 2000,
+        "boundary": "wrap",
+        "density": 0.3,
+        "initialSeed": 9,
+        "noiseSeed": 1009,
+        "noiseProbability": 0.01
+      },
+      "summary": {
+        "density": 0.20030810546875,
+        "activity": 0.197970458984375,
+        "difference": 0.21238232421875
+      },
+      "finalMeasurement": {
+        "generation": 2000,
+        "density": 0.21087646484375,
+        "activity": 0.19805908203125,
+        "difference": 0.22412109375
+      }
+    },
+    {
+      "config": {
+        "rule": "B36/S23",
+        "width": 128,
+        "height": 128,
+        "generations": 2000,
+        "boundary": "wrap",
+        "density": 0.3,
+        "initialSeed": 10,
+        "noiseSeed": 1010,
+        "noiseProbability": 0.01
+      },
+      "summary": {
+        "density": 0.19477685546875,
+        "activity": 0.192390380859375,
+        "difference": 0.2105836181640625
+      },
+      "finalMeasurement": {
+        "generation": 2000,
+        "density": 0.190673828125,
+        "activity": 0.1845703125,
+        "difference": 0.20440673828125
+      }
+    },
+    {
+      "config": {
+        "rule": "B36/S23",
+        "width": 128,
+        "height": 128,
+        "generations": 2000,
+        "boundary": "wrap",
+        "density": 0.3,
+        "initialSeed": 1,
+        "noiseSeed": 1001,
+        "noiseProbability": 0.05
+      },
+      "summary": {
+        "density": 0.346353759765625,
+        "activity": 0.3644793701171875,
+        "difference": 0.35317333984375
+      },
+      "finalMeasurement": {
+        "generation": 2000,
+        "density": 0.34527587890625,
+        "activity": 0.3653564453125,
+        "difference": 0.3529052734375
+      }
+    },
+    {
+      "config": {
+        "rule": "B36/S23",
+        "width": 128,
+        "height": 128,
+        "generations": 2000,
+        "boundary": "wrap",
+        "density": 0.3,
+        "initialSeed": 2,
+        "noiseSeed": 1002,
+        "noiseProbability": 0.05
+      },
+      "summary": {
+        "density": 0.3471927490234375,
+        "activity": 0.364853515625,
+        "difference": 0.3541439208984375
+      },
+      "finalMeasurement": {
+        "generation": 2000,
+        "density": 0.345458984375,
+        "activity": 0.3704833984375,
+        "difference": 0.35443115234375
+      }
+    },
+    {
+      "config": {
+        "rule": "B36/S23",
+        "width": 128,
+        "height": 128,
+        "generations": 2000,
+        "boundary": "wrap",
+        "density": 0.3,
+        "initialSeed": 3,
+        "noiseSeed": 1003,
+        "noiseProbability": 0.05
+      },
+      "summary": {
+        "density": 0.347369384765625,
+        "activity": 0.3652342529296875,
+        "difference": 0.3536273193359375
+      },
+      "finalMeasurement": {
+        "generation": 2000,
+        "density": 0.34637451171875,
+        "activity": 0.36370849609375,
+        "difference": 0.35369873046875
+      }
+    },
+    {
+      "config": {
+        "rule": "B36/S23",
+        "width": 128,
+        "height": 128,
+        "generations": 2000,
+        "boundary": "wrap",
+        "density": 0.3,
+        "initialSeed": 4,
+        "noiseSeed": 1004,
+        "noiseProbability": 0.05
+      },
+      "summary": {
+        "density": 0.346391357421875,
+        "activity": 0.3645787353515625,
+        "difference": 0.35333837890625
+      },
+      "finalMeasurement": {
+        "generation": 2000,
+        "density": 0.34991455078125,
+        "activity": 0.36810302734375,
+        "difference": 0.35498046875
+      }
+    },
+    {
+      "config": {
+        "rule": "B36/S23",
+        "width": 128,
+        "height": 128,
+        "generations": 2000,
+        "boundary": "wrap",
+        "density": 0.3,
+        "initialSeed": 5,
+        "noiseSeed": 1005,
+        "noiseProbability": 0.05
+      },
+      "summary": {
+        "density": 0.34765966796875,
+        "activity": 0.365307861328125,
+        "difference": 0.35433203125
+      },
+      "finalMeasurement": {
+        "generation": 2000,
+        "density": 0.3486328125,
+        "activity": 0.3621826171875,
+        "difference": 0.35638427734375
+      }
+    },
+    {
+      "config": {
+        "rule": "B36/S23",
+        "width": 128,
+        "height": 128,
+        "generations": 2000,
+        "boundary": "wrap",
+        "density": 0.3,
+        "initialSeed": 6,
+        "noiseSeed": 1006,
+        "noiseProbability": 0.05
+      },
+      "summary": {
+        "density": 0.347831787109375,
+        "activity": 0.3655941162109375,
+        "difference": 0.35335009765625
+      },
+      "finalMeasurement": {
+        "generation": 2000,
+        "density": 0.3431396484375,
+        "activity": 0.36444091796875,
+        "difference": 0.35015869140625
+      }
+    },
+    {
+      "config": {
+        "rule": "B36/S23",
+        "width": 128,
+        "height": 128,
+        "generations": 2000,
+        "boundary": "wrap",
+        "density": 0.3,
+        "initialSeed": 7,
+        "noiseSeed": 1007,
+        "noiseProbability": 0.05
+      },
+      "summary": {
+        "density": 0.3471031494140625,
+        "activity": 0.3644730224609375,
+        "difference": 0.3526920166015625
+      },
+      "finalMeasurement": {
+        "generation": 2000,
+        "density": 0.34136962890625,
+        "activity": 0.3663330078125,
+        "difference": 0.34716796875
+      }
+    },
+    {
+      "config": {
+        "rule": "B36/S23",
+        "width": 128,
+        "height": 128,
+        "generations": 2000,
+        "boundary": "wrap",
+        "density": 0.3,
+        "initialSeed": 8,
+        "noiseSeed": 1008,
+        "noiseProbability": 0.05
+      },
+      "summary": {
+        "density": 0.346786376953125,
+        "activity": 0.36475,
+        "difference": 0.351498779296875
+      },
+      "finalMeasurement": {
+        "generation": 2000,
+        "density": 0.3544921875,
+        "activity": 0.36810302734375,
+        "difference": 0.35845947265625
+      }
+    },
+    {
+      "config": {
+        "rule": "B36/S23",
+        "width": 128,
+        "height": 128,
+        "generations": 2000,
+        "boundary": "wrap",
+        "density": 0.3,
+        "initialSeed": 9,
+        "noiseSeed": 1009,
+        "noiseProbability": 0.05
+      },
+      "summary": {
+        "density": 0.3457425537109375,
+        "activity": 0.363798583984375,
+        "difference": 0.3519425048828125
+      },
+      "finalMeasurement": {
+        "generation": 2000,
+        "density": 0.34124755859375,
+        "activity": 0.36676025390625,
+        "difference": 0.3486328125
+      }
+    },
+    {
+      "config": {
+        "rule": "B36/S23",
+        "width": 128,
+        "height": 128,
+        "generations": 2000,
+        "boundary": "wrap",
+        "density": 0.3,
+        "initialSeed": 10,
+        "noiseSeed": 1010,
+        "noiseProbability": 0.05
+      },
+      "summary": {
+        "density": 0.3458193359375,
+        "activity": 0.3637049560546875,
+        "difference": 0.3537789306640625
+      },
+      "finalMeasurement": {
+        "generation": 2000,
+        "density": 0.33746337890625,
+        "activity": 0.36798095703125,
+        "difference": 0.3441162109375
+      }
+    },
+    {
+      "config": {
+        "rule": "B345/S15",
+        "width": 128,
+        "height": 128,
+        "generations": 2000,
+        "boundary": "wrap",
+        "density": 0.3,
+        "initialSeed": 1,
+        "noiseSeed": 1001,
+        "noiseProbability": 0
+      },
+      "summary": {
+        "density": 0.4558851318359375,
+        "activity": 0.737447998046875,
+        "difference": 0
+      },
+      "finalMeasurement": {
+        "generation": 2000,
+        "density": 0.45343017578125,
+        "activity": 0.729736328125,
+        "difference": 0
+      }
+    },
+    {
+      "config": {
+        "rule": "B345/S15",
+        "width": 128,
+        "height": 128,
+        "generations": 2000,
+        "boundary": "wrap",
+        "density": 0.3,
+        "initialSeed": 2,
+        "noiseSeed": 1002,
+        "noiseProbability": 0
+      },
+      "summary": {
+        "density": 0.455540283203125,
+        "activity": 0.736810302734375,
+        "difference": 0
+      },
+      "finalMeasurement": {
+        "generation": 2000,
+        "density": 0.4498291015625,
+        "activity": 0.728759765625,
+        "difference": 0
+      }
+    },
+    {
+      "config": {
+        "rule": "B345/S15",
+        "width": 128,
+        "height": 128,
+        "generations": 2000,
+        "boundary": "wrap",
+        "density": 0.3,
+        "initialSeed": 3,
+        "noiseSeed": 1003,
+        "noiseProbability": 0
+      },
+      "summary": {
+        "density": 0.4554730224609375,
+        "activity": 0.7368773193359375,
+        "difference": 0
+      },
+      "finalMeasurement": {
+        "generation": 2000,
+        "density": 0.4493408203125,
+        "activity": 0.7283935546875,
+        "difference": 0
+      }
+    },
+    {
+      "config": {
+        "rule": "B345/S15",
+        "width": 128,
+        "height": 128,
+        "generations": 2000,
+        "boundary": "wrap",
+        "density": 0.3,
+        "initialSeed": 4,
+        "noiseSeed": 1004,
+        "noiseProbability": 0
+      },
+      "summary": {
+        "density": 0.4556114501953125,
+        "activity": 0.7370345458984375,
+        "difference": 0
+      },
+      "finalMeasurement": {
+        "generation": 2000,
+        "density": 0.45196533203125,
+        "activity": 0.7376708984375,
+        "difference": 0
+      }
+    },
+    {
+      "config": {
+        "rule": "B345/S15",
+        "width": 128,
+        "height": 128,
+        "generations": 2000,
+        "boundary": "wrap",
+        "density": 0.3,
+        "initialSeed": 5,
+        "noiseSeed": 1005,
+        "noiseProbability": 0
+      },
+      "summary": {
+        "density": 0.4558023681640625,
+        "activity": 0.7368177490234376,
+        "difference": 0
+      },
+      "finalMeasurement": {
+        "generation": 2000,
+        "density": 0.4622802734375,
+        "activity": 0.73126220703125,
+        "difference": 0
+      }
+    },
+    {
+      "config": {
+        "rule": "B345/S15",
+        "width": 128,
+        "height": 128,
+        "generations": 2000,
+        "boundary": "wrap",
+        "density": 0.3,
+        "initialSeed": 6,
+        "noiseSeed": 1006,
+        "noiseProbability": 0
+      },
+      "summary": {
+        "density": 0.45552294921875,
+        "activity": 0.7371126708984375,
+        "difference": 0
+      },
+      "finalMeasurement": {
+        "generation": 2000,
+        "density": 0.454833984375,
+        "activity": 0.73712158203125,
+        "difference": 0
+      }
+    },
+    {
+      "config": {
+        "rule": "B345/S15",
+        "width": 128,
+        "height": 128,
+        "generations": 2000,
+        "boundary": "wrap",
+        "density": 0.3,
+        "initialSeed": 7,
+        "noiseSeed": 1007,
+        "noiseProbability": 0
+      },
+      "summary": {
+        "density": 0.455803955078125,
+        "activity": 0.7370333251953125,
+        "difference": 0
+      },
+      "finalMeasurement": {
+        "generation": 2000,
+        "density": 0.44732666015625,
+        "activity": 0.7269287109375,
+        "difference": 0
+      }
+    },
+    {
+      "config": {
+        "rule": "B345/S15",
+        "width": 128,
+        "height": 128,
+        "generations": 2000,
+        "boundary": "wrap",
+        "density": 0.3,
+        "initialSeed": 8,
+        "noiseSeed": 1008,
+        "noiseProbability": 0
+      },
+      "summary": {
+        "density": 0.4559610595703125,
+        "activity": 0.7371112060546875,
+        "difference": 0
+      },
+      "finalMeasurement": {
+        "generation": 2000,
+        "density": 0.458251953125,
+        "activity": 0.7427978515625,
+        "difference": 0
+      }
+    },
+    {
+      "config": {
+        "rule": "B345/S15",
+        "width": 128,
+        "height": 128,
+        "generations": 2000,
+        "boundary": "wrap",
+        "density": 0.3,
+        "initialSeed": 9,
+        "noiseSeed": 1009,
+        "noiseProbability": 0
+      },
+      "summary": {
+        "density": 0.4559886474609375,
+        "activity": 0.737695556640625,
+        "difference": 0
+      },
+      "finalMeasurement": {
+        "generation": 2000,
+        "density": 0.45703125,
+        "activity": 0.74298095703125,
+        "difference": 0
+      }
+    },
+    {
+      "config": {
+        "rule": "B345/S15",
+        "width": 128,
+        "height": 128,
+        "generations": 2000,
+        "boundary": "wrap",
+        "density": 0.3,
+        "initialSeed": 10,
+        "noiseSeed": 1010,
+        "noiseProbability": 0
+      },
+      "summary": {
+        "density": 0.45561767578125,
+        "activity": 0.736909423828125,
+        "difference": 0
+      },
+      "finalMeasurement": {
+        "generation": 2000,
+        "density": 0.45672607421875,
+        "activity": 0.7413330078125,
+        "difference": 0
+      }
+    },
+    {
+      "config": {
+        "rule": "B345/S15",
+        "width": 128,
+        "height": 128,
+        "generations": 2000,
+        "boundary": "wrap",
+        "density": 0.3,
+        "initialSeed": 1,
+        "noiseSeed": 1001,
+        "noiseProbability": 0.0001
+      },
+      "summary": {
+        "density": 0.4554315185546875,
+        "activity": 0.7370283203125,
+        "difference": 0.496201904296875
+      },
+      "finalMeasurement": {
+        "generation": 2000,
+        "density": 0.4559326171875,
+        "activity": 0.74224853515625,
+        "difference": 0.49481201171875
+      }
+    },
+    {
+      "config": {
+        "rule": "B345/S15",
+        "width": 128,
+        "height": 128,
+        "generations": 2000,
+        "boundary": "wrap",
+        "density": 0.3,
+        "initialSeed": 2,
+        "noiseSeed": 1002,
+        "noiseProbability": 0.0001
+      },
+      "summary": {
+        "density": 0.455727783203125,
+        "activity": 0.7375467529296875,
+        "difference": 0.49605810546875
+      },
+      "finalMeasurement": {
+        "generation": 2000,
+        "density": 0.45330810546875,
+        "activity": 0.73602294921875,
+        "difference": 0.49114990234375
+      }
+    },
+    {
+      "config": {
+        "rule": "B345/S15",
+        "width": 128,
+        "height": 128,
+        "generations": 2000,
+        "boundary": "wrap",
+        "density": 0.3,
+        "initialSeed": 3,
+        "noiseSeed": 1003,
+        "noiseProbability": 0.0001
+      },
+      "summary": {
+        "density": 0.4557681884765625,
+        "activity": 0.7368531494140625,
+        "difference": 0.496207763671875
+      },
+      "finalMeasurement": {
+        "generation": 2000,
+        "density": 0.45526123046875,
+        "activity": 0.73699951171875,
+        "difference": 0.49725341796875
+      }
+    },
+    {
+      "config": {
+        "rule": "B345/S15",
+        "width": 128,
+        "height": 128,
+        "generations": 2000,
+        "boundary": "wrap",
+        "density": 0.3,
+        "initialSeed": 4,
+        "noiseSeed": 1004,
+        "noiseProbability": 0.0001
+      },
+      "summary": {
+        "density": 0.455742919921875,
+        "activity": 0.737305419921875,
+        "difference": 0.4965479736328125
+      },
+      "finalMeasurement": {
+        "generation": 2000,
+        "density": 0.4561767578125,
+        "activity": 0.73492431640625,
+        "difference": 0.50421142578125
+      }
+    },
+    {
+      "config": {
+        "rule": "B345/S15",
+        "width": 128,
+        "height": 128,
+        "generations": 2000,
+        "boundary": "wrap",
+        "density": 0.3,
+        "initialSeed": 5,
+        "noiseSeed": 1005,
+        "noiseProbability": 0.0001
+      },
+      "summary": {
+        "density": 0.4556318359375,
+        "activity": 0.73709619140625,
+        "difference": 0.4967005615234375
+      },
+      "finalMeasurement": {
+        "generation": 2000,
+        "density": 0.4560546875,
+        "activity": 0.74072265625,
+        "difference": 0.5003662109375
+      }
+    },
+    {
+      "config": {
+        "rule": "B345/S15",
+        "width": 128,
+        "height": 128,
+        "generations": 2000,
+        "boundary": "wrap",
+        "density": 0.3,
+        "initialSeed": 6,
+        "noiseSeed": 1006,
+        "noiseProbability": 0.0001
+      },
+      "summary": {
+        "density": 0.4559461669921875,
+        "activity": 0.73712255859375,
+        "difference": 0.4961749267578125
+      },
+      "finalMeasurement": {
+        "generation": 2000,
+        "density": 0.4586181640625,
+        "activity": 0.7401123046875,
+        "difference": 0.499755859375
+      }
+    },
+    {
+      "config": {
+        "rule": "B345/S15",
+        "width": 128,
+        "height": 128,
+        "generations": 2000,
+        "boundary": "wrap",
+        "density": 0.3,
+        "initialSeed": 7,
+        "noiseSeed": 1007,
+        "noiseProbability": 0.0001
+      },
+      "summary": {
+        "density": 0.4556163330078125,
+        "activity": 0.7365216064453125,
+        "difference": 0.4964481201171875
+      },
+      "finalMeasurement": {
+        "generation": 2000,
+        "density": 0.45294189453125,
+        "activity": 0.73248291015625,
+        "difference": 0.4952392578125
+      }
+    },
+    {
+      "config": {
+        "rule": "B345/S15",
+        "width": 128,
+        "height": 128,
+        "generations": 2000,
+        "boundary": "wrap",
+        "density": 0.3,
+        "initialSeed": 8,
+        "noiseSeed": 1008,
+        "noiseProbability": 0.0001
+      },
+      "summary": {
+        "density": 0.4555465087890625,
+        "activity": 0.7371953125,
+        "difference": 0.49615673828125
+      },
+      "finalMeasurement": {
+        "generation": 2000,
+        "density": 0.45025634765625,
+        "activity": 0.7349853515625,
+        "difference": 0.49969482421875
+      }
+    },
+    {
+      "config": {
+        "rule": "B345/S15",
+        "width": 128,
+        "height": 128,
+        "generations": 2000,
+        "boundary": "wrap",
+        "density": 0.3,
+        "initialSeed": 9,
+        "noiseSeed": 1009,
+        "noiseProbability": 0.0001
+      },
+      "summary": {
+        "density": 0.4556763916015625,
+        "activity": 0.7368648681640625,
+        "difference": 0.496559814453125
+      },
+      "finalMeasurement": {
+        "generation": 2000,
+        "density": 0.45166015625,
+        "activity": 0.73846435546875,
+        "difference": 0.4962158203125
+      }
+    },
+    {
+      "config": {
+        "rule": "B345/S15",
+        "width": 128,
+        "height": 128,
+        "generations": 2000,
+        "boundary": "wrap",
+        "density": 0.3,
+        "initialSeed": 10,
+        "noiseSeed": 1010,
+        "noiseProbability": 0.0001
+      },
+      "summary": {
+        "density": 0.4558720703125,
+        "activity": 0.7372752685546875,
+        "difference": 0.49585205078125
+      },
+      "finalMeasurement": {
+        "generation": 2000,
+        "density": 0.45733642578125,
+        "activity": 0.736083984375,
+        "difference": 0.492431640625
+      }
+    },
+    {
+      "config": {
+        "rule": "B345/S15",
+        "width": 128,
+        "height": 128,
+        "generations": 2000,
+        "boundary": "wrap",
+        "density": 0.3,
+        "initialSeed": 1,
+        "noiseSeed": 1001,
+        "noiseProbability": 0.001
+      },
+      "summary": {
+        "density": 0.456340087890625,
+        "activity": 0.7363636474609375,
+        "difference": 0.4959886474609375
+      },
+      "finalMeasurement": {
+        "generation": 2000,
+        "density": 0.45086669921875,
+        "activity": 0.728759765625,
+        "difference": 0.4989013671875
+      }
+    },
+    {
+      "config": {
+        "rule": "B345/S15",
+        "width": 128,
+        "height": 128,
+        "generations": 2000,
+        "boundary": "wrap",
+        "density": 0.3,
+        "initialSeed": 2,
+        "noiseSeed": 1002,
+        "noiseProbability": 0.001
+      },
+      "summary": {
+        "density": 0.456346435546875,
+        "activity": 0.7363214111328125,
+        "difference": 0.496247802734375
+      },
+      "finalMeasurement": {
+        "generation": 2000,
+        "density": 0.45697021484375,
+        "activity": 0.73638916015625,
+        "difference": 0.49835205078125
+      }
+    },
+    {
+      "config": {
+        "rule": "B345/S15",
+        "width": 128,
+        "height": 128,
+        "generations": 2000,
+        "boundary": "wrap",
+        "density": 0.3,
+        "initialSeed": 3,
+        "noiseSeed": 1003,
+        "noiseProbability": 0.001
+      },
+      "summary": {
+        "density": 0.4559991455078125,
+        "activity": 0.7361409912109375,
+        "difference": 0.4961953125
+      },
+      "finalMeasurement": {
+        "generation": 2000,
+        "density": 0.45697021484375,
+        "activity": 0.7335205078125,
+        "difference": 0.49798583984375
+      }
+    },
+    {
+      "config": {
+        "rule": "B345/S15",
+        "width": 128,
+        "height": 128,
+        "generations": 2000,
+        "boundary": "wrap",
+        "density": 0.3,
+        "initialSeed": 4,
+        "noiseSeed": 1004,
+        "noiseProbability": 0.001
+      },
+      "summary": {
+        "density": 0.456235107421875,
+        "activity": 0.7366846923828125,
+        "difference": 0.4962784423828125
+      },
+      "finalMeasurement": {
+        "generation": 2000,
+        "density": 0.46112060546875,
+        "activity": 0.74383544921875,
+        "difference": 0.495361328125
+      }
+    },
+    {
+      "config": {
+        "rule": "B345/S15",
+        "width": 128,
+        "height": 128,
+        "generations": 2000,
+        "boundary": "wrap",
+        "density": 0.3,
+        "initialSeed": 5,
+        "noiseSeed": 1005,
+        "noiseProbability": 0.001
+      },
+      "summary": {
+        "density": 0.4563272705078125,
+        "activity": 0.736639404296875,
+        "difference": 0.49614111328125
+      },
+      "finalMeasurement": {
+        "generation": 2000,
+        "density": 0.45880126953125,
+        "activity": 0.7413330078125,
+        "difference": 0.49932861328125
+      }
+    },
+    {
+      "config": {
+        "rule": "B345/S15",
+        "width": 128,
+        "height": 128,
+        "generations": 2000,
+        "boundary": "wrap",
+        "density": 0.3,
+        "initialSeed": 6,
+        "noiseSeed": 1006,
+        "noiseProbability": 0.001
+      },
+      "summary": {
+        "density": 0.4562894287109375,
+        "activity": 0.7362503662109375,
+        "difference": 0.4959227294921875
+      },
+      "finalMeasurement": {
+        "generation": 2000,
+        "density": 0.4622802734375,
+        "activity": 0.73779296875,
+        "difference": 0.4986572265625
+      }
+    },
+    {
+      "config": {
+        "rule": "B345/S15",
+        "width": 128,
+        "height": 128,
+        "generations": 2000,
+        "boundary": "wrap",
+        "density": 0.3,
+        "initialSeed": 7,
+        "noiseSeed": 1007,
+        "noiseProbability": 0.001
+      },
+      "summary": {
+        "density": 0.455932861328125,
+        "activity": 0.736609375,
+        "difference": 0.496151123046875
+      },
+      "finalMeasurement": {
+        "generation": 2000,
+        "density": 0.4566650390625,
+        "activity": 0.73309326171875,
+        "difference": 0.50079345703125
+      }
+    },
+    {
+      "config": {
+        "rule": "B345/S15",
+        "width": 128,
+        "height": 128,
+        "generations": 2000,
+        "boundary": "wrap",
+        "density": 0.3,
+        "initialSeed": 8,
+        "noiseSeed": 1008,
+        "noiseProbability": 0.001
+      },
+      "summary": {
+        "density": 0.456204833984375,
+        "activity": 0.736343505859375,
+        "difference": 0.4962115478515625
+      },
+      "finalMeasurement": {
+        "generation": 2000,
+        "density": 0.45196533203125,
+        "activity": 0.7305908203125,
+        "difference": 0.49542236328125
+      }
+    },
+    {
+      "config": {
+        "rule": "B345/S15",
+        "width": 128,
+        "height": 128,
+        "generations": 2000,
+        "boundary": "wrap",
+        "density": 0.3,
+        "initialSeed": 9,
+        "noiseSeed": 1009,
+        "noiseProbability": 0.001
+      },
+      "summary": {
+        "density": 0.45638427734375,
+        "activity": 0.73687744140625,
+        "difference": 0.4962984619140625
+      },
+      "finalMeasurement": {
+        "generation": 2000,
+        "density": 0.45208740234375,
+        "activity": 0.730224609375,
+        "difference": 0.49627685546875
+      }
+    },
+    {
+      "config": {
+        "rule": "B345/S15",
+        "width": 128,
+        "height": 128,
+        "generations": 2000,
+        "boundary": "wrap",
+        "density": 0.3,
+        "initialSeed": 10,
+        "noiseSeed": 1010,
+        "noiseProbability": 0.001
+      },
+      "summary": {
+        "density": 0.456228515625,
+        "activity": 0.7364847412109375,
+        "difference": 0.496052734375
+      },
+      "finalMeasurement": {
+        "generation": 2000,
+        "density": 0.45068359375,
+        "activity": 0.7333984375,
+        "difference": 0.49713134765625
+      }
+    },
+    {
+      "config": {
+        "rule": "B345/S15",
+        "width": 128,
+        "height": 128,
+        "generations": 2000,
+        "boundary": "wrap",
+        "density": 0.3,
+        "initialSeed": 1,
+        "noiseSeed": 1001,
+        "noiseProbability": 0.01
+      },
+      "summary": {
+        "density": 0.4598017578125,
+        "activity": 0.7306456298828125,
+        "difference": 0.4963885498046875
+      },
+      "finalMeasurement": {
+        "generation": 2000,
+        "density": 0.459716796875,
+        "activity": 0.72698974609375,
+        "difference": 0.48736572265625
+      }
+    },
+    {
+      "config": {
+        "rule": "B345/S15",
+        "width": 128,
+        "height": 128,
+        "generations": 2000,
+        "boundary": "wrap",
+        "density": 0.3,
+        "initialSeed": 2,
+        "noiseSeed": 1002,
+        "noiseProbability": 0.01
+      },
+      "summary": {
+        "density": 0.4598709716796875,
+        "activity": 0.7305928955078125,
+        "difference": 0.4961864013671875
+      },
+      "finalMeasurement": {
+        "generation": 2000,
+        "density": 0.4654541015625,
+        "activity": 0.73248291015625,
+        "difference": 0.4984130859375
+      }
+    },
+    {
+      "config": {
+        "rule": "B345/S15",
+        "width": 128,
+        "height": 128,
+        "generations": 2000,
+        "boundary": "wrap",
+        "density": 0.3,
+        "initialSeed": 3,
+        "noiseSeed": 1003,
+        "noiseProbability": 0.01
+      },
+      "summary": {
+        "density": 0.459749755859375,
+        "activity": 0.7310086669921875,
+        "difference": 0.4970462646484375
+      },
+      "finalMeasurement": {
+        "generation": 2000,
+        "density": 0.45355224609375,
+        "activity": 0.7266845703125,
+        "difference": 0.50286865234375
+      }
+    },
+    {
+      "config": {
+        "rule": "B345/S15",
+        "width": 128,
+        "height": 128,
+        "generations": 2000,
+        "boundary": "wrap",
+        "density": 0.3,
+        "initialSeed": 4,
+        "noiseSeed": 1004,
+        "noiseProbability": 0.01
+      },
+      "summary": {
+        "density": 0.4595970458984375,
+        "activity": 0.7303995361328125,
+        "difference": 0.4963427734375
+      },
+      "finalMeasurement": {
+        "generation": 2000,
+        "density": 0.45831298828125,
+        "activity": 0.73199462890625,
+        "difference": 0.5013427734375
+      }
+    },
+    {
+      "config": {
+        "rule": "B345/S15",
+        "width": 128,
+        "height": 128,
+        "generations": 2000,
+        "boundary": "wrap",
+        "density": 0.3,
+        "initialSeed": 5,
+        "noiseSeed": 1005,
+        "noiseProbability": 0.01
+      },
+      "summary": {
+        "density": 0.4593189697265625,
+        "activity": 0.73066845703125,
+        "difference": 0.496392578125
+      },
+      "finalMeasurement": {
+        "generation": 2000,
+        "density": 0.452392578125,
+        "activity": 0.7305908203125,
+        "difference": 0.498779296875
+      }
+    },
+    {
+      "config": {
+        "rule": "B345/S15",
+        "width": 128,
+        "height": 128,
+        "generations": 2000,
+        "boundary": "wrap",
+        "density": 0.3,
+        "initialSeed": 6,
+        "noiseSeed": 1006,
+        "noiseProbability": 0.01
+      },
+      "summary": {
+        "density": 0.4596534423828125,
+        "activity": 0.7309136962890626,
+        "difference": 0.4965399169921875
+      },
+      "finalMeasurement": {
+        "generation": 2000,
+        "density": 0.46337890625,
+        "activity": 0.72955322265625,
+        "difference": 0.495361328125
+      }
+    },
+    {
+      "config": {
+        "rule": "B345/S15",
+        "width": 128,
+        "height": 128,
+        "generations": 2000,
+        "boundary": "wrap",
+        "density": 0.3,
+        "initialSeed": 7,
+        "noiseSeed": 1007,
+        "noiseProbability": 0.01
+      },
+      "summary": {
+        "density": 0.4596358642578125,
+        "activity": 0.7305706787109375,
+        "difference": 0.4962906494140625
+      },
+      "finalMeasurement": {
+        "generation": 2000,
+        "density": 0.4638671875,
+        "activity": 0.7342529296875,
+        "difference": 0.49908447265625
+      }
+    },
+    {
+      "config": {
+        "rule": "B345/S15",
+        "width": 128,
+        "height": 128,
+        "generations": 2000,
+        "boundary": "wrap",
+        "density": 0.3,
+        "initialSeed": 8,
+        "noiseSeed": 1008,
+        "noiseProbability": 0.01
+      },
+      "summary": {
+        "density": 0.459632568359375,
+        "activity": 0.7300245361328125,
+        "difference": 0.4967435302734375
+      },
+      "finalMeasurement": {
+        "generation": 2000,
+        "density": 0.4599609375,
+        "activity": 0.72265625,
+        "difference": 0.490966796875
+      }
+    },
+    {
+      "config": {
+        "rule": "B345/S15",
+        "width": 128,
+        "height": 128,
+        "generations": 2000,
+        "boundary": "wrap",
+        "density": 0.3,
+        "initialSeed": 9,
+        "noiseSeed": 1009,
+        "noiseProbability": 0.01
+      },
+      "summary": {
+        "density": 0.45943359375,
+        "activity": 0.7303912353515625,
+        "difference": 0.4963736572265625
+      },
+      "finalMeasurement": {
+        "generation": 2000,
+        "density": 0.4617919921875,
+        "activity": 0.72607421875,
+        "difference": 0.49365234375
+      }
+    },
+    {
+      "config": {
+        "rule": "B345/S15",
+        "width": 128,
+        "height": 128,
+        "generations": 2000,
+        "boundary": "wrap",
+        "density": 0.3,
+        "initialSeed": 10,
+        "noiseSeed": 1010,
+        "noiseProbability": 0.01
+      },
+      "summary": {
+        "density": 0.4596251220703125,
+        "activity": 0.73130517578125,
+        "difference": 0.4968426513671875
+      },
+      "finalMeasurement": {
+        "generation": 2000,
+        "density": 0.4583740234375,
+        "activity": 0.73046875,
+        "difference": 0.49163818359375
+      }
+    },
+    {
+      "config": {
+        "rule": "B345/S15",
+        "width": 128,
+        "height": 128,
+        "generations": 2000,
+        "boundary": "wrap",
+        "density": 0.3,
+        "initialSeed": 1,
+        "noiseSeed": 1001,
+        "noiseProbability": 0.05
+      },
+      "summary": {
+        "density": 0.470469970703125,
+        "activity": 0.7096522216796874,
+        "difference": 0.4977125244140625
+      },
+      "finalMeasurement": {
+        "generation": 2000,
+        "density": 0.4730224609375,
+        "activity": 0.719970703125,
+        "difference": 0.49639892578125
+      }
+    },
+    {
+      "config": {
+        "rule": "B345/S15",
+        "width": 128,
+        "height": 128,
+        "generations": 2000,
+        "boundary": "wrap",
+        "density": 0.3,
+        "initialSeed": 2,
+        "noiseSeed": 1002,
+        "noiseProbability": 0.05
+      },
+      "summary": {
+        "density": 0.4705589599609375,
+        "activity": 0.709904052734375,
+        "difference": 0.4976177978515625
+      },
+      "finalMeasurement": {
+        "generation": 2000,
+        "density": 0.4697265625,
+        "activity": 0.70538330078125,
+        "difference": 0.4951171875
+      }
+    },
+    {
+      "config": {
+        "rule": "B345/S15",
+        "width": 128,
+        "height": 128,
+        "generations": 2000,
+        "boundary": "wrap",
+        "density": 0.3,
+        "initialSeed": 3,
+        "noiseSeed": 1003,
+        "noiseProbability": 0.05
+      },
+      "summary": {
+        "density": 0.470671875,
+        "activity": 0.7098662109375,
+        "difference": 0.4970704345703125
+      },
+      "finalMeasurement": {
+        "generation": 2000,
+        "density": 0.46917724609375,
+        "activity": 0.70989990234375,
+        "difference": 0.49420166015625
+      }
+    },
+    {
+      "config": {
+        "rule": "B345/S15",
+        "width": 128,
+        "height": 128,
+        "generations": 2000,
+        "boundary": "wrap",
+        "density": 0.3,
+        "initialSeed": 4,
+        "noiseSeed": 1004,
+        "noiseProbability": 0.05
+      },
+      "summary": {
+        "density": 0.4705223388671875,
+        "activity": 0.7101439208984375,
+        "difference": 0.4975849609375
+      },
+      "finalMeasurement": {
+        "generation": 2000,
+        "density": 0.46990966796875,
+        "activity": 0.71014404296875,
+        "difference": 0.4954833984375
+      }
+    },
+    {
+      "config": {
+        "rule": "B345/S15",
+        "width": 128,
+        "height": 128,
+        "generations": 2000,
+        "boundary": "wrap",
+        "density": 0.3,
+        "initialSeed": 5,
+        "noiseSeed": 1005,
+        "noiseProbability": 0.05
+      },
+      "summary": {
+        "density": 0.470396484375,
+        "activity": 0.709787109375,
+        "difference": 0.4972330322265625
+      },
+      "finalMeasurement": {
+        "generation": 2000,
+        "density": 0.47088623046875,
+        "activity": 0.71026611328125,
+        "difference": 0.50067138671875
+      }
+    },
+    {
+      "config": {
+        "rule": "B345/S15",
+        "width": 128,
+        "height": 128,
+        "generations": 2000,
+        "boundary": "wrap",
+        "density": 0.3,
+        "initialSeed": 6,
+        "noiseSeed": 1006,
+        "noiseProbability": 0.05
+      },
+      "summary": {
+        "density": 0.4703360595703125,
+        "activity": 0.7096634521484375,
+        "difference": 0.4973792724609375
+      },
+      "finalMeasurement": {
+        "generation": 2000,
+        "density": 0.46685791015625,
+        "activity": 0.7076416015625,
+        "difference": 0.50164794921875
+      }
+    },
+    {
+      "config": {
+        "rule": "B345/S15",
+        "width": 128,
+        "height": 128,
+        "generations": 2000,
+        "boundary": "wrap",
+        "density": 0.3,
+        "initialSeed": 7,
+        "noiseSeed": 1007,
+        "noiseProbability": 0.05
+      },
+      "summary": {
+        "density": 0.4706846923828125,
+        "activity": 0.70947509765625,
+        "difference": 0.4972069091796875
+      },
+      "finalMeasurement": {
+        "generation": 2000,
+        "density": 0.47308349609375,
+        "activity": 0.71124267578125,
+        "difference": 0.496826171875
+      }
+    },
+    {
+      "config": {
+        "rule": "B345/S15",
+        "width": 128,
+        "height": 128,
+        "generations": 2000,
+        "boundary": "wrap",
+        "density": 0.3,
+        "initialSeed": 8,
+        "noiseSeed": 1008,
+        "noiseProbability": 0.05
+      },
+      "summary": {
+        "density": 0.470400634765625,
+        "activity": 0.7092288818359375,
+        "difference": 0.4980738525390625
+      },
+      "finalMeasurement": {
+        "generation": 2000,
+        "density": 0.47509765625,
+        "activity": 0.7066650390625,
+        "difference": 0.4931640625
+      }
+    },
+    {
+      "config": {
+        "rule": "B345/S15",
+        "width": 128,
+        "height": 128,
+        "generations": 2000,
+        "boundary": "wrap",
+        "density": 0.3,
+        "initialSeed": 9,
+        "noiseSeed": 1009,
+        "noiseProbability": 0.05
+      },
+      "summary": {
+        "density": 0.470635986328125,
+        "activity": 0.7096611328125,
+        "difference": 0.4974163818359375
+      },
+      "finalMeasurement": {
+        "generation": 2000,
+        "density": 0.4691162109375,
+        "activity": 0.708740234375,
+        "difference": 0.508544921875
+      }
+    },
+    {
+      "config": {
+        "rule": "B345/S15",
+        "width": 128,
+        "height": 128,
+        "generations": 2000,
+        "boundary": "wrap",
+        "density": 0.3,
+        "initialSeed": 10,
+        "noiseSeed": 1010,
+        "noiseProbability": 0.05
+      },
+      "summary": {
+        "density": 0.4706685791015625,
+        "activity": 0.7098153076171875,
+        "difference": 0.4975347900390625
+      },
+      "finalMeasurement": {
+        "generation": 2000,
+        "density": 0.47052001953125,
+        "activity": 0.7127685546875,
+        "difference": 0.50048828125
+      }
+    }
+  ],
+  "aggregates": [
+    {
+      "rule": "B3/S23",
+      "noiseProbability": 0,
+      "density": 0.3,
+      "width": 128,
+      "height": 128,
+      "boundary": "wrap",
+      "generations": 2000,
+      "count": 10,
+      "densityMean": 0.03787860107421875,
+      "densitySd": 0.008691800349345623,
+      "activityMean": 0.018097912597656248,
+      "activitySd": 0.008518390208587686,
+      "differenceMean": 0,
+      "differenceSd": 0
+    },
+    {
+      "rule": "B3/S23",
+      "noiseProbability": 0.0001,
+      "density": 0.3,
+      "width": 128,
+      "height": 128,
+      "boundary": "wrap",
+      "generations": 2000,
+      "count": 10,
+      "densityMean": 0.0625403564453125,
+      "densitySd": 0.006123944347316088,
+      "activityMean": 0.044477294921875,
+      "activitySd": 0.004755873966738617,
+      "differenceMean": 0.09569100341796875,
+      "differenceSd": 0.012094010186011413
+    },
+    {
+      "rule": "B3/S23",
+      "noiseProbability": 0.001,
+      "density": 0.3,
+      "width": 128,
+      "height": 128,
+      "boundary": "wrap",
+      "generations": 2000,
+      "count": 10,
+      "densityMean": 0.07230479736328126,
+      "densitySd": 0.010453431123302078,
+      "activityMean": 0.05902481689453125,
+      "activitySd": 0.008773760653681713,
+      "differenceMean": 0.1048447509765625,
+      "differenceSd": 0.007727420058112718
+    },
+    {
+      "rule": "B3/S23",
+      "noiseProbability": 0.01,
+      "density": 0.3,
+      "width": 128,
+      "height": 128,
+      "boundary": "wrap",
+      "generations": 2000,
+      "count": 10,
+      "densityMean": 0.13683800048828124,
+      "densitySd": 0.0056697683188941085,
+      "activityMean": 0.13006738281250002,
+      "activitySd": 0.005057789428407437,
+      "differenceMean": 0.164562646484375,
+      "differenceSd": 0.005988034593457348
+    },
+    {
+      "rule": "B3/S23",
+      "noiseProbability": 0.05,
+      "density": 0.3,
+      "width": 128,
+      "height": 128,
+      "boundary": "wrap",
+      "generations": 2000,
+      "count": 10,
+      "densityMean": 0.31944199218749997,
+      "densitySd": 0.00039348400271060674,
+      "activityMean": 0.326890771484375,
+      "activitySd": 0.0002832702720812115,
+      "differenceMean": 0.33311627197265625,
+      "differenceSd": 0.003148031110306347
+    },
+    {
+      "rule": "B36/S23",
+      "noiseProbability": 0,
+      "density": 0.3,
+      "width": 128,
+      "height": 128,
+      "boundary": "wrap",
+      "generations": 2000,
+      "count": 10,
+      "densityMean": 0.0209666015625,
+      "densitySd": 0.0029713001687628905,
+      "activityMean": 0.0029520874023437503,
+      "activitySd": 0.001906354328290164,
+      "differenceMean": 0,
+      "differenceSd": 0
+    },
+    {
+      "rule": "B36/S23",
+      "noiseProbability": 0.0001,
+      "density": 0.3,
+      "width": 128,
+      "height": 128,
+      "boundary": "wrap",
+      "generations": 2000,
+      "count": 10,
+      "densityMean": 0.014980944824218754,
+      "densitySd": 0.0070848185259504825,
+      "activityMean": 0.0092292236328125,
+      "activitySd": 0.005607213947570837,
+      "differenceMean": 0.03526422119140625,
+      "differenceSd": 0.0073853397305408495
+    },
+    {
+      "rule": "B36/S23",
+      "noiseProbability": 0.001,
+      "density": 0.3,
+      "width": 128,
+      "height": 128,
+      "boundary": "wrap",
+      "generations": 2000,
+      "count": 10,
+      "densityMean": 0.03321187744140626,
+      "densitySd": 0.017642794572800886,
+      "activityMean": 0.02933414306640625,
+      "activitySd": 0.015230194015293779,
+      "differenceMean": 0.052804260253906256,
+      "differenceSd": 0.01619052117516661
+    },
+    {
+      "rule": "B36/S23",
+      "noiseProbability": 0.01,
+      "density": 0.3,
+      "width": 128,
+      "height": 128,
+      "boundary": "wrap",
+      "generations": 2000,
+      "count": 10,
+      "densityMean": 0.19622828369140627,
+      "densitySd": 0.003310083725826302,
+      "activityMean": 0.19392766113281248,
+      "activitySd": 0.0032017244824159214,
+      "differenceMean": 0.20894290771484375,
+      "differenceSd": 0.003365678086059429
+    },
+    {
+      "rule": "B36/S23",
+      "noiseProbability": 0.05,
+      "density": 0.3,
+      "width": 128,
+      "height": 128,
+      "boundary": "wrap",
+      "generations": 2000,
+      "count": 10,
+      "densityMean": 0.34682501220703127,
+      "densitySd": 0.0007313539402379158,
+      "activityMean": 0.36467744140625,
+      "activitySd": 0.0006139949584563106,
+      "differenceMean": 0.35318773193359376,
+      "differenceSd": 0.0009107152661034972
+    },
+    {
+      "rule": "B345/S15",
+      "noiseProbability": 0,
+      "density": 0.3,
+      "width": 128,
+      "height": 128,
+      "boundary": "wrap",
+      "generations": 2000,
+      "count": 10,
+      "densityMean": 0.45572065429687497,
+      "densitySd": 0.00019025034227143726,
+      "activityMean": 0.737085009765625,
+      "activitySd": 0.00028520075829540845,
+      "differenceMean": 0,
+      "differenceSd": 0
+    },
+    {
+      "rule": "B345/S15",
+      "noiseProbability": 0.0001,
+      "density": 0.3,
+      "width": 128,
+      "height": 128,
+      "boundary": "wrap",
+      "generations": 2000,
+      "count": 10,
+      "densityMean": 0.4556959716796875,
+      "densitySd": 0.00015097957957351825,
+      "activityMean": 0.7370809448242187,
+      "activitySd": 0.0002856533904843745,
+      "differenceMean": 0.4962907958984375,
+      "differenceSd": 0.00026331338129832467
+    },
+    {
+      "rule": "B345/S15",
+      "noiseProbability": 0.001,
+      "density": 0.3,
+      "width": 128,
+      "height": 128,
+      "boundary": "wrap",
+      "generations": 2000,
+      "count": 10,
+      "densityMean": 0.45622879638671876,
+      "densitySd": 0.00015081398399424754,
+      "activityMean": 0.7364715576171876,
+      "activitySd": 0.0002276189879269987,
+      "differenceMean": 0.49614879150390623,
+      "differenceSd": 0.00012523661114303497
+    },
+    {
+      "rule": "B345/S15",
+      "noiseProbability": 0.01,
+      "density": 0.3,
+      "width": 128,
+      "height": 128,
+      "boundary": "wrap",
+      "generations": 2000,
+      "count": 10,
+      "densityMean": 0.45963190917968755,
+      "densitySd": 0.0001629207909428695,
+      "activityMean": 0.73065205078125,
+      "activitySd": 0.0003587323177999855,
+      "differenceMean": 0.496514697265625,
+      "differenceSd": 0.0002751505353031999
+    },
+    {
+      "rule": "B345/S15",
+      "noiseProbability": 0.05,
+      "density": 0.3,
+      "width": 128,
+      "height": 128,
+      "boundary": "wrap",
+      "generations": 2000,
+      "count": 10,
+      "densityMean": 0.47053455810546874,
+      "densitySd": 0.0001295133282879777,
+      "activityMean": 0.7097197387695313,
+      "activitySd": 0.0002496619087513032,
+      "differenceMean": 0.49748299560546877,
+      "differenceSd": 0.00029004875563647423
+    }
+  ]
+}
