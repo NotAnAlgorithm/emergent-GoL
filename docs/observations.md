@@ -14,6 +14,10 @@ Copy the entry below for each useful observation; keep exported JSON, CSV, and i
 
 The two rules agree on these short preset trajectories. This does not imply agreement for arbitrary starts: the additional six-neighbor birth condition still needs a setup that exercises it. To reproduce, load each named preset and step four times under each rule. For longer investigation, export a run and inspect the spatial movement as well as the live-cell count.
 
+## Saved blob observations
+
+The eight `results/observation-*.json` files record the new blob, takeover, decay, and percolation examples. Their `initialGrid` field is the exact beginning of the run; `generation` records when the observation was made. Replaying that beginning under the saved rule, boundary, seeds, and noise reproduces the observed generation. The measured comparison and interpretation are in [Finding interesting structure](complexity-directions.md).
+
 ## Entry template
 
 - **Date / title:**

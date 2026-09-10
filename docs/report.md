@@ -4,7 +4,7 @@
 
 ## Question
 
-How do local birth/survival rules produce different collective behavior, and how does persistent noise affect the behavior of selected rules?
+How do local birth/survival rules produce different collective behavior? Which measurements separate localized growth and persistent small structures from uniform noise or percolation, and how does noise change them?
 
 The browser lab supports exploratory observation and reproducible comparisons. A visually interesting pattern is a starting point for investigation, not evidence of a general law.
 
@@ -35,15 +35,21 @@ If the coarse sweep suggests a transition, refine that interval and repeat at 64
 - **Density:** fraction of live cells at each generation.
 - **Activity:** fraction of cells that changed between consecutive generations, including noise.
 - **Matched-run difference:** fraction of disagreeing cells between paired runs at the same generation.
+- **Trend:** fitted density or activity change per 1,000 generations over the final 500 generations.
+- **Active area:** fraction of cells that changed at least once during the final 64 generations.
+- **Patchiness:** excess variance in 8 × 8 or 32 × 32 tile densities above random occupancy with the same global density.
+- **Components:** eight-neighbor live-cell component count and the largest component's share of the population.
 - **Visual evidence:** exported examples and notes describing recognizable structures, persistence, and interactions.
 
-High activity is not itself complexity. Divergence from a noiseless trajectory does not necessarily mean all structure has disappeared. Finite duration can miss long transients or periods; finite grids and wrapping can create interactions absent on an unbounded plane. Repeated seeds reduce sampling uncertainty but do not remove these limits.
+No single measurement is a complexity score. Positive trend can mean blob growth or uniform takeover. Patchiness can mean a blob or simple phase separation. A large component can be a coherent object or percolation. Use the measurements together, replay candidates, and repeat them under matched conditions.
 
 ## Findings
 
 The 100 sampled rules covered a broad range of final-500-generation activity. Using descriptive bands fixed after the run, 14 rules were nearly quiescent (mean activity below 0.1%), 25 had low activity (0.1–10%), 26 had intermediate activity (10–50%), and 35 had high activity (at least 50%). These bands organize this sample; they are not established cellular-automaton classes. No rule had zero mean density across all nine runs, partly because `B0` rules can revive an empty grid.
 
 `B345/S15` met the predeclared follow-up criterion. At 30% and 50% initial density, all six runs converged to approximately 45.6% density and 73.7% activity. At 10%, two seeds became nearly quiescent (activity 0.34% and 0.41%), while seed 3 remained active (46.8%). This is evidence of sensitivity to the tested initial configurations, not proof of multiple attractors or complex computation.
+
+The later saved observations show that trend and spatial structure add information missing from these averages. A monotonic `B3/S01347` blob run grew by 22.70 density percentage points per 1,000 generations and had strong coarse patchiness (0.218). A `B36/S236` percolation run had almost no trend or coarse patchiness (0.002), while activity reached 99.9% of the board during its final 64 generations. These individual examples support the new search measurements; they do not classify either rule in general. See [the focused analysis](complexity-directions.md).
 
 The noise experiment produced the following final-500-generation means across ten seeds. Full sample standard deviations are in the exported data and figure.
 
@@ -77,9 +83,9 @@ Record the tested revision, environment, commands, outcomes, and any known failu
 
 | Validation                         | Revision/environment                   | Outcome                         |
 | ---------------------------------- | -------------------------------------- | ------------------------------- |
-| Unit tests (`npm test`)            | Node 22.23.2                           | 37 passed                       |
+| Unit tests (`npm test`)            | Node 22.23.2                           | 52 passed                       |
 | Production build (`npm run build`) | TypeScript 7 / Vite 8                  | Passed                          |
-| Browser tests (`npm run test:e2e`) | Chromium / Playwright 1.61             | 9 passed                        |
+| Browser tests (`npm run test:e2e`) | Chromium / Playwright 1.61             | 15 passed                       |
 | Full automated research            | Intel Core Ultra 7 155H / Node 22.23.2 | Survey: 389.2 s; noise: 254.3 s |
 
 Performance measurements must name the computer/browser and workload. Do not extrapolate one machine's result to every user's device.
@@ -98,4 +104,4 @@ Record later assistance here, including material changes to methods or interpret
 
 Simple rule changes produced markedly different long-run statistics under matched starting conditions. Persistent noise strongly altered Conway and HighLife in this experiment. For `B345/S15`, density and activity were statistically robust even while the precise trajectory was not. This makes it a useful example of why robustness needs an explicit definition.
 
-The strongest immediate follow-up is a finer HighLife sweep between `p = 0.001` and `p = 0.01`, repeated on 64 × 64 and 256 × 256 grids. Visual inspection should then ask whether the measured change corresponds to recognizable structures disappearing. Later directions include a rule atlas, recovery after a single perturbation, multiple cell states, and 3D systems.
+The next rule search should filter for nonzero trend plus coarse patchiness and localized activity, then replay candidates to distinguish coherent growth from ordinary filling. Conway and HighLife are useful controls for small persistent or moving structures; the saved blob and percolation observations provide macroscopic controls. A later study can add recurrence under translation for oscillators and spaceships. Information-theoretic methods are better reserved for shortlisted rules where simpler measurements leave a real ambiguity.
