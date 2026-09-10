@@ -39,18 +39,19 @@ function batch(count: number, concurrency: number) {
     concurrency,
     onResult: vi.fn(),
     onDone: vi.fn(),
+    onPaused: vi.fn(),
     onError: vi.fn(),
   };
   const configs = Array.from({ length: count }, (_, initialSeed) => ({
     ...config,
     initialSeed,
   }));
-  const cancel = startBatch(configs, options, () => {
+  const controller = startBatch(configs, options, () => {
     const worker = new FakeWorker();
     workers.push(worker);
     return worker;
   });
-  return { workers, options, cancel, configs };
+  return { workers, options, controller, configs };
 }
 describe("batch pool", () => {
   it("bounds workers and dispatches the next job to the first free worker", () => {
@@ -86,15 +87,33 @@ describe("batch pool", () => {
     expect(batch(2, NaN).workers).toHaveLength(1);
   });
   it("cancels every worker and ignores late results", () => {
-    const { workers, options, cancel } = batch(3, 2);
-    cancel();
-    cancel();
+    const { workers, options, controller } = batch(3, 2);
+    controller.cancel();
+    controller.cancel();
     workers.forEach((worker) => worker.finish());
     expect(options.onResult).not.toHaveBeenCalled();
     expect(options.onDone).not.toHaveBeenCalled();
     expect(
       workers.every((worker) => worker.terminate.mock.calls.length === 1),
     ).toBe(true);
+  });
+  it("pauses after active jobs and resumes remaining work", () => {
+    const { workers, options, controller } = batch(5, 2);
+    controller.pause();
+    workers.forEach((worker) => worker.finish());
+    expect(options.onResult).toHaveBeenCalledTimes(2);
+    expect(options.onPaused).toHaveBeenCalledOnce();
+    expect(
+      workers.map((worker) => worker.postMessage.mock.calls.length),
+    ).toEqual([1, 1]);
+    controller.resume();
+    expect(
+      workers.map((worker) => worker.postMessage.mock.calls.length),
+    ).toEqual([2, 2]);
+    workers[0].finish();
+    workers[1].finish();
+    workers[0].finish();
+    expect(options.onDone).toHaveBeenCalledOnce();
   });
   it.each(["message", "event"])("cleans up on a worker error %s", (kind) => {
     const { workers, options } = batch(3, 2);

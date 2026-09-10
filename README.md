@@ -29,11 +29,13 @@ The production build is written to `dist/`. Browser installation is required onc
 3. Change birth/survival counts using rule notation or toggles. `B3/S23` means dead cells are born with three neighbors; live cells survive with two or three.
 4. Compare wrapping boundaries with fixed dead boundaries. Record the boundary choice when interpreting an observation.
 5. Save interesting runs with notes. Download experiment JSON for replay, measurement CSV for analysis, and a screenshot for the notebook.
-6. Use the experiment tools to survey sampled rules or compare noise conditions. Keep exported results alongside your observations.
+6. Use the experiment tools to survey sampled rules or compare noise conditions. A survey can pause after its active worker jobs finish and resume without losing results.
 
 The default grid is 128 × 128. Updates are synchronous, using the eight-cell Moore neighborhood. Noise independently flips each cell after the normal update with probability `p`; `p = 0` is noiseless. Initialization and noise use separate seeded random streams.
 
 Both experiment tables support column sorting and filtering. Text filters match substrings; numeric filters accept exact values, `>=10`, `<=20`, or inclusive ranges such as `5..20`. Percentages use their displayed 0–100 units. Replicate columns compare the mean, not its standard deviation. Filters combine across columns; reset clears them. Exports retain the full study.
+
+Survey presets trade repeated starts for rule coverage: standard tests 100 rules × 9 starts, broad tests 500 × 2, wide tests 1,000 × 1, and the pilot tests 9 × 1. Broad and wide scans use 10% initial density. Use them to find candidates, then repeat promising rules with more seeds, densities, sizes, and longer runs.
 
 Playback targets up to 1,000 generations/second and reports its achieved rate. Multiple generations run between redraws within a short frame budget; actual speed depends on grid size and noise. CSV retains the most recent 10,000 generations. Independent batch runs use 1, 2, or 4 workers (limited by reported hardware), with deterministic results regardless of completion order. Parallel runs speed up surveys; a single world's successive generations remain sequential.
 
@@ -48,6 +50,8 @@ The playground supports grids through 1024 × 1024. **Expand into empty space** 
 - **Follow-up:** refine any interesting noise interval and repeat at 64 × 64 and 256 × 256 before drawing conclusions about a transition.
 
 Density is the live-cell fraction. Activity is the fraction of cells changed during a generation. Neither alone measures complexity. Classifications describe the tested conditions, not universal properties of a rule. Finite grids and boundaries can alter behavior; empty states can revive under `B0` rules, so emptiness is not a general stopping condition.
+
+Survey results also report density and activity trends over the final 500 generations, the area touched during the last 64 generations, excess density variation in 8 × 8 and 32 × 32 patches, component count, and the largest component's share of live cells. These are separate clues: trend finds growth, patchiness finds clustered regions, and activity coverage separates local change from board-wide churn. Filter several columns together rather than treating any one as a complexity score.
 
 See [research directions and literature](docs/complexity-directions.md) for object-scale measurements, information storage/transfer, controlled blob experiments, and interpreting noise.
 

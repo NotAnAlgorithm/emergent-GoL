@@ -1,7 +1,7 @@
 import "./style.css";
 import { expandGrid } from "./grid-tools";
 import { enhanceTable } from "./table-controls";
-import { startBatch } from "./batch-pool";
+import { startBatch, type BatchController } from "./batch-pool";
 import {
   parseRule,
   formatRule,
@@ -34,7 +34,7 @@ document.querySelector("#app")!.innerHTML = `
 <div class="section-title">RULE <span>02</span></div><div class="presets"><button id="conway">Conway</button><button id="highlife">HighLife</button></div><label>Birth / survival<input id="rule" value="B3/S23" spellcheck="false" aria-describedby="rule-help"></label><p id="rule-help" class="help">Choose the neighbor counts that bring a cell to life or keep it alive.</p><span class="row-label">BIRTH</span><div id="birth" class="counts"></div><span class="row-label">SURVIVAL</span><div id="survival" class="counts"></div>
 <div class="section-title">PERTURBATION <span>03</span></div><label>Noise probability<input id="noise" type="number" min="0" max="1" step="0.0001" value="0"></label><p class="help">Each cell flips independently after every update. Zero preserves the original rule.</p><label>Noise seed<input id="noise-seed" type="number" min="0" max="4294967295" value="7"></label></aside>
 <div class="stage"><div class="stage-heading"><span><i class="dot"></i> <span id="state">PAUSED</span></span><span id="world-label">128 × 128 · WRAP</span></div><div class="canvas-wrap"><canvas id="grid" width="768" height="768" aria-label="Cellular automaton grid. Drag to draw; shift-drag to erase."></canvas><canvas id="comparison" width="768" height="768" hidden aria-label="Matched noiseless simulation"></canvas></div><div class="canvas-caption"><span>DRAG TO DRAW · SHIFT TO ERASE</span><span id="comparison-label">B3/S23</span></div><div class="transport"><button id="play" class="primary">▶ Run</button><button id="step">Step →</button><button id="reset">↺ Restore</button><button id="clear">Clear</button><label class="speed">Speed <input id="speed" type="range" min="1" max="1000" value="15"><output id="speed-out">15/s</output><span id="actual-speed" aria-live="off">0/s actual</span></label></div><div class="stats"><div><span>GENERATION</span><strong id="generation">0</strong></div><div><span>LIVE CELLS</span><strong id="population">0</strong></div><div><span>DENSITY</span><strong id="live-density">0%</strong></div><div><span>ACTIVITY</span><strong id="activity">0%</strong></div></div><details open><summary>Measurements over time <span class="help">density / activity</span></summary><canvas id="chart" width="900" height="140" aria-label="Density and activity chart"></canvas><p class="help">Green: density · amber: activity. These describe behavior, not complexity.</p></details><div class="savebar"><label><input id="paired" type="checkbox"> Compare with no noise</label><button id="screenshot">Save image</button><button id="csv">Export CSV</button></div><div class="record"><input id="name" placeholder="Name this discovery" aria-label="Discovery name"><textarea id="notes" placeholder="What did you observe? What would you test next?" aria-label="Observation notes"></textarea><button id="save" class="primary">＋ Save to notebook</button></div></div></section>
-<section id="experiments" hidden><div class="experiment-intro"><h2>Look beyond a single world.</h2><p>Compare rules using matched starting grids. Runs happen in the background; you can cancel and keep completed results.</p></div><div class="batch-controls panel"><label>Protocol<select id="protocol"><option value="survey">100-rule survey · 900 runs</option><option value="noise">Noise study · 50 runs / rule</option><option value="pilot">Quick pilot · 9 runs</option></select></label><label>Grid<select id="batch-size"><option>64</option><option selected>128</option><option>256</option></select></label><label>Generations<input id="duration" type="number" min="1" max="10000" value="1000"></label><label>Sampling seed<input id="sampling-seed" type="number" value="2026" min="0" max="4294967295"></label><label>Parallel runs<select id="concurrency"><option>1</option><option>2</option><option selected>4</option></select></label><button id="start-batch" class="primary">Run experiments ↗</button><button id="cancel-batch" disabled>Cancel</button><button id="export-batch">Export results</button></div><p id="batch-info" class="help">Survey: 3 densities × 3 seeds per rule. Noise study uses the current playground rule and 10 matched seeds per noise level.</p><progress id="progress" max="1" value="0"></progress><p id="batch-status" role="status">Ready to investigate.</p><div id="aggregates"></div><div class="table-wrap"><table><thead><tr><th>Rule</th><th>Start density</th><th>Seed</th><th>Noise</th><th>Mean density</th><th>Mean activity</th><th>Observation</th><th>Replay</th></tr></thead><tbody id="results"></tbody></table></div><p class="help">Means use the final 500 generations (or the full run if shorter). Tags are your observations; a single run does not establish a rule’s behavior.</p></section>
+<section id="experiments" hidden><div class="experiment-intro"><h2>Look beyond a single world.</h2><p>Compare rules using matched starting grids. Runs happen in the background; pause between runs or cancel and keep completed results.</p></div><div class="batch-controls panel"><label>Protocol<select id="protocol"><option value="survey">Survey · 100 rules × 9 starts</option><option value="broad">Broad · 500 rules × 2 starts</option><option value="wide">Wide · 1,000 rules × 1 start</option><option value="noise">Noise study · 50 runs</option><option value="pilot">Quick pilot · 9 rules</option></select></label><label>Grid<select id="batch-size"><option>64</option><option selected>128</option><option>256</option></select></label><label>Generations<input id="duration" type="number" min="1" max="10000" value="1000"></label><label>Sampling seed<input id="sampling-seed" type="number" value="2026" min="0" max="4294967295"></label><label>Parallel runs<select id="concurrency"><option>1</option><option>2</option><option selected>4</option></select></label><button id="start-batch" class="primary">Run experiments ↗</button><button id="pause-batch" disabled>Pause</button><button id="cancel-batch" disabled>Cancel</button><button id="export-batch">Export results</button></div><p id="batch-info" class="help">The standard survey tests 3 densities × 3 seeds. Broad and wide scans test more rules at 10% density with fewer starts per rule.</p><progress id="progress" max="1" value="0"></progress><p id="batch-status" role="status">Ready to investigate.</p><div id="aggregates"></div><div class="table-wrap"><table><thead><tr><th>Rule</th><th>Start density</th><th>Seed</th><th>Noise</th><th>Mean density</th><th>Mean activity</th><th>Density trend</th><th>Activity trend</th><th>Active area</th><th>Patch 8</th><th>Patch 32</th><th>Largest component</th><th>Components</th><th>Observation</th><th>Replay</th></tr></thead><tbody id="results"></tbody></table></div><p class="help">Trends are percentage-point change per 1,000 generations over the final 500. Active area is the fraction of cells changed during the last 64 steps. Patch values are excess local-density variance above shuffled occupancy. Interpret these columns together; none is a complexity score.</p></section>
 <section id="notebook" hidden><div class="experiment-intro"><h2>Keep the interesting things.</h2><p>Saved beginnings, settings, and observations. Export a discovery to share a reproducible experiment.</p></div><label class="import">Import discovery <input id="import" type="file" accept=".json,application/json"></label><div id="records" class="records"></div></section><p id="message" role="status" aria-live="polite"></p></main><footer>EMERGENT / An open-ended study of order, noise & possibility.<span>Every discovery starts with a small change.</span></footer>`;
 let width = 128,
   height = 128,
@@ -53,7 +53,8 @@ let width = 128,
     activity: number;
     difference: number;
   }[] = [],
-  cancelBatch: (() => void) | undefined,
+  batch: BatchController | undefined,
+  batchPaused = false,
   results: (BatchResult & { index: number })[] = [],
   batchMetadata: Record<string, unknown> = {};
 const canvas = $<HTMLCanvasElement>("grid");
@@ -548,6 +549,13 @@ function addResult(result: BatchResult & { index: number }) {
     c.noiseProbability,
     `${(result.summary.density * 100).toFixed(1)}%`,
     `${(result.summary.activity * 100).toFixed(1)}%`,
+    `${(result.summary.densityTrend * 100).toFixed(2)} pp/1k`,
+    `${(result.summary.activityTrend * 100).toFixed(2)} pp/1k`,
+    `${(result.summary.activeCoverage * 100).toFixed(1)}%`,
+    result.summary.patchiness8.toFixed(3),
+    result.summary.patchiness32.toFixed(3),
+    `${(result.summary.largestComponent * 100).toFixed(1)}%`,
+    result.summary.components,
   ]) {
     const td = document.createElement("td");
     td.textContent = String(v);
@@ -580,9 +588,12 @@ function addResult(result: BatchResult & { index: number }) {
   $("results").append(tr);
 }
 function stopBatch() {
-  cancelBatch?.();
-  cancelBatch = undefined;
+  batch?.cancel();
+  batch = undefined;
+  batchPaused = false;
   $<HTMLButtonElement>("start-batch").disabled = false;
+  $<HTMLButtonElement>("pause-batch").disabled = true;
+  $("pause-batch").textContent = "Pause";
   $<HTMLButtonElement>("cancel-batch").disabled = true;
 }
 $("protocol").onchange = () => {
@@ -609,7 +620,17 @@ $("start-batch").onclick = () => {
     return;
   }
   const protocol = $<HTMLSelectElement>("protocol").value;
-  let configs =
+  const survey = {
+    survey: {
+      ruleCount: 100,
+      densities: [0.1, 0.3, 0.5],
+      initialSeeds: [1, 2, 3],
+    },
+    broad: { ruleCount: 500, densities: [0.1], initialSeeds: [1, 2] },
+    wide: { ruleCount: 1000, densities: [0.1], initialSeeds: [1] },
+    pilot: { ruleCount: 9, densities: [0.1], initialSeeds: [1] },
+  }[protocol];
+  const configs =
     protocol === "noise"
       ? noiseConfigs(formatRule(rule), size, size, generations)
       : surveyConfigs({
@@ -617,8 +638,8 @@ $("start-batch").onclick = () => {
           height: size,
           generations,
           samplingSeed: seed,
+          ...survey,
         });
-  if (protocol === "pilot") configs = configs.slice(0, 9);
   batchMetadata = {
     protocol,
     samplingSeed: protocol === "noise" ? null : seed,
@@ -631,15 +652,20 @@ $("start-batch").onclick = () => {
   $<HTMLProgressElement>("progress").value = 0;
   $<HTMLProgressElement>("progress").max = configs.length;
   $<HTMLButtonElement>("start-batch").disabled = true;
+  $<HTMLButtonElement>("pause-batch").disabled = false;
   $<HTMLButtonElement>("cancel-batch").disabled = false;
   $("batch-status").textContent = `Running 0 / ${configs.length}…`;
-  cancelBatch = startBatch(configs, {
+  batch = startBatch(configs, {
     concurrency: num("concurrency"),
     onResult(result, index) {
       addResult({ ...result, index });
       $<HTMLProgressElement>("progress").value = results.length;
       $("batch-status").textContent =
-        `Completed ${results.length} / ${configs.length}`;
+        `${batchPaused ? "Pausing" : "Completed"} ${results.length} / ${configs.length}`;
+    },
+    onPaused() {
+      $("batch-status").textContent =
+        `Paused after ${results.length} / ${configs.length}.`;
     },
     onDone() {
       showAggregates();
@@ -655,6 +681,20 @@ $("start-batch").onclick = () => {
       say(`Experiment failed: ${message}`);
     },
   });
+};
+$("pause-batch").onclick = () => {
+  if (!batch) return;
+  batchPaused = !batchPaused;
+  if (batchPaused) {
+    $("pause-batch").textContent = "Resume";
+    $("batch-status").textContent = "Pausing after active runs finish…";
+    batch.pause();
+  } else {
+    batch.resume();
+    $("pause-batch").textContent = "Pause";
+    $("batch-status").textContent =
+      `Running ${results.length} / ${$<HTMLProgressElement>("progress").max}…`;
+  }
 };
 $("cancel-batch").onclick = () => {
   stopBatch();

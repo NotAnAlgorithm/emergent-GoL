@@ -15,7 +15,7 @@ test("result columns filter, sort numerically, reset, and preserve replay notes"
     .fill("10..30");
   await page.locator("#start-batch").click();
   await expect(page.locator("#batch-status")).toContainText("Finished 9 runs");
-  await expect(page.locator("#results tr:visible")).toHaveCount(6);
+  await expect(page.locator("#results tr:visible")).toHaveCount(9);
   await table
     .getByRole("searchbox", { name: "Filter Start density", exact: true })
     .fill("");

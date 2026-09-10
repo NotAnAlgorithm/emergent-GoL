@@ -1,5 +1,5 @@
 import { describe, expect, it } from "vitest";
-import { createRng, parseRule, randomGrid, step } from "./engine";
+import { createRng, parseRule, patternGrid, randomGrid, step } from "./engine";
 import {
   aggregateResults,
   compactResult,
@@ -98,12 +98,81 @@ describe("study design", () => {
       configs.slice(9, 18).map(({ rule: _rule, ...c }) => c),
     );
   });
+  it("supports broader surveys with fewer starts per rule", () => {
+    const configs = surveyConfigs({
+      width: 8,
+      height: 8,
+      generations: 3,
+      samplingSeed: 5,
+      ruleCount: 500,
+      densities: [0.1],
+      initialSeeds: [1, 2],
+    });
+    expect(configs).toHaveLength(1000);
+    expect(new Set(configs.map((c) => c.rule)).size).toBe(500);
+    expect(new Set(configs.map((c) => c.density))).toEqual(new Set([0.1]));
+  });
   it("matches initial and noise streams across five noise levels", () => {
     const configs = noiseConfigs("B3/S23");
     expect(configs).toHaveLength(50);
     expect(new Set(configs.map((c) => c.noiseProbability)).size).toBe(5);
     expect(configs[0].initialSeed).toBe(configs[10].initialSeed);
     expect(configs[0].noiseSeed).toBe(configs[10].noiseSeed);
+  });
+});
+
+describe("complexity descriptors", () => {
+  const stillLife = Array(16 * 16).fill(0);
+  for (const index of [17, 18, 33, 34]) stillLife[index] = 1;
+  it("reports clustered components without inventing temporal activity", () => {
+    const result = runExperiment(
+      {
+        ...config,
+        width: 16,
+        height: 16,
+        boundary: "dead",
+        generations: 64,
+        noiseProbability: 0,
+      },
+      stillLife,
+    );
+    expect(result.summary.components).toBe(1);
+    expect(result.summary.largestComponent).toBe(1);
+    expect(result.summary.patchiness8).toBeGreaterThan(0);
+    expect(result.summary.activeCoverage).toBe(0);
+    expect(result.summary.densityTrend).toBeCloseTo(0);
+  });
+  it("separates disconnected objects and localized changing cells", () => {
+    const cells = [...stillLife];
+    for (const index of [221, 222, 237, 238]) cells[index] = 1;
+    const components = runExperiment(
+      {
+        ...config,
+        width: 16,
+        height: 16,
+        boundary: "dead",
+        generations: 0,
+        noiseProbability: 0,
+      },
+      cells,
+    );
+    expect(components.summary.components).toBe(2);
+    expect(components.summary.largestComponent).toBe(0.5);
+
+    const glider = Array.from(patternGrid("glider", 16, 16));
+    const changing = runExperiment(
+      {
+        ...config,
+        width: 16,
+        height: 16,
+        boundary: "dead",
+        generations: 64,
+        noiseProbability: 0,
+      },
+      glider,
+    );
+    expect(changing.summary.activeCoverage).toBeGreaterThan(5 / 256);
+    expect(changing.summary.activeFlipSd).toBeGreaterThan(0);
   });
 });
 describe("experiment files", () => {
@@ -245,7 +314,12 @@ describe("noise comparisons and replicate summaries", () => {
     const base = runExperiment({ ...config, generations: 0 });
     const results = [0.2, 0.4, 0.6].map((value) => ({
       ...base,
-      summary: { density: value, activity: value / 2, difference: value },
+      summary: {
+        ...base.summary,
+        density: value,
+        activity: value / 2,
+        difference: value,
+      },
     }));
     const groups = aggregateResults([
       ...results,

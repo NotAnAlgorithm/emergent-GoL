@@ -128,7 +128,7 @@ test("malformed discovery files are rejected without adding records", async ({
   }
 });
 
-test("pilot completes, exports results, and opens a replay", async ({
+test("pilot completes, exports complexity results, and opens a replay", async ({
   page,
 }) => {
   await preparePilot(page);
@@ -165,6 +165,14 @@ test("pilot completes, exports results, and opens a replay", async ({
   expect(tagged?.tag).toBe("Interesting");
   expect(exported.results[0]).not.toHaveProperty("finalGrid");
   expect(exported.results[0]).not.toHaveProperty("measurements");
+  expect(exported.results[0].summary).toEqual(
+    expect.objectContaining({
+      densityTrend: expect.any(Number),
+      activeCoverage: expect.any(Number),
+      patchiness8: expect.any(Number),
+      largestComponent: expect.any(Number),
+    }),
+  );
   await page
     .locator("#results tr")
     .first()
@@ -188,6 +196,29 @@ test("a cancelled pilot can be restarted", async ({ page }) => {
   await page.locator("#start-batch").click();
   await expect(page.locator("#batch-status")).toContainText("Finished 9 runs");
   await expect(page.locator("#results tr")).toHaveCount(9);
+});
+
+test("a survey can pause between runs and resume", async ({ page }) => {
+  await preparePilot(page);
+  await expect(page.locator("#protocol option")).toHaveText([
+    "Survey · 100 rules × 9 starts",
+    "Broad · 500 rules × 2 starts",
+    "Wide · 1,000 rules × 1 start",
+    "Noise study · 50 runs",
+    "Quick pilot · 9 rules",
+  ]);
+  await page.evaluate(() => {
+    (document.querySelector("#start-batch") as HTMLButtonElement).click();
+    (document.querySelector("#pause-batch") as HTMLButtonElement).click();
+  });
+  await expect(page.locator("#batch-status")).toContainText("Paused after");
+  const pausedCount = await page.locator("#results tr").count();
+  expect(pausedCount).toBeLessThanOrEqual(4);
+  await expect(page.locator("#pause-batch")).toHaveText("Resume");
+  await page.waitForTimeout(100);
+  await expect(page.locator("#results tr")).toHaveCount(pausedCount);
+  await page.locator("#pause-batch").click();
+  await expect(page.locator("#batch-status")).toContainText("Finished 9 runs");
 });
 
 test("paired mode advances synchronized noisy and noiseless worlds", async ({

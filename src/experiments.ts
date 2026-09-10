@@ -30,7 +30,20 @@ export interface RunResult {
   initialGrid: number[];
   finalGrid: number[];
   measurements: Measurement[];
-  summary: { density: number; activity: number; difference: number };
+  summary: RunSummary;
+}
+export interface RunSummary {
+  density: number;
+  activity: number;
+  difference: number;
+  densityTrend: number;
+  activityTrend: number;
+  activeCoverage: number;
+  activeFlipSd: number;
+  patchiness8: number;
+  patchiness32: number;
+  components: number;
+  largestComponent: number;
 }
 export type BatchResult = Pick<
   RunResult,
@@ -109,6 +122,8 @@ export function runExperiment(
   const rule = parseRule(config.rule);
   const rng = createRng(config.noiseSeed);
   const measurements: Measurement[] = [];
+  const flipCounts = new Uint16Array(grid.length);
+  const flipWindowStart = Math.max(1, config.generations - 63);
   for (let generation = 1; generation <= config.generations; generation++) {
     const next = step(
       grid,
@@ -133,23 +148,149 @@ export function runExperiment(
       difference:
         config.noiseProbability > 0 ? metrics(baseline, next).activity : 0,
     });
+    if (generation >= flipWindowStart)
+      for (let i = 0; i < grid.length; i++)
+        if (grid[i] !== next[i]) flipCounts[i]++;
     grid = next;
   }
   const tail = measurements.slice(-500);
-  const summary = tail.length
-    ? {
-        density: tail.reduce((sum, m) => sum + m.density, 0) / tail.length,
-        activity: tail.reduce((sum, m) => sum + m.activity, 0) / tail.length,
-        difference:
-          tail.reduce((sum, m) => sum + m.difference, 0) / tail.length,
-      }
-    : { ...metrics(grid, grid), difference: 0 };
+  const spatial = spatialMetrics(
+    grid,
+    config.width,
+    config.height,
+    config.boundary,
+  );
+  const flips = flipMetrics(flipCounts, Math.min(64, config.generations));
+  const summary: RunSummary = {
+    density: tail.length
+      ? mean(tail.map((m) => m.density))
+      : metrics(grid, grid).density,
+    activity: mean(tail.map((m) => m.activity)),
+    difference: mean(tail.map((m) => m.difference)),
+    densityTrend: trend(tail.map((m) => m.density)),
+    activityTrend: trend(tail.map((m) => m.activity)),
+    ...flips,
+    ...spatial,
+  };
   return {
     config: { ...config },
     initialGrid: initial,
     finalGrid: Array.from(grid),
     measurements,
     summary,
+  };
+}
+
+function mean(values: number[]) {
+  return values.length
+    ? values.reduce((sum, value) => sum + value, 0) / values.length
+    : 0;
+}
+
+/** Least-squares change per 1,000 generations over the summary window. */
+function trend(values: number[]) {
+  if (values.length < 2) return 0;
+  const center = (values.length - 1) / 2;
+  let numerator = 0;
+  let denominator = 0;
+  for (let i = 0; i < values.length; i++) {
+    numerator += (i - center) * values[i];
+    denominator += (i - center) ** 2;
+  }
+  return (1000 * numerator) / denominator;
+}
+
+function flipMetrics(counts: Uint16Array, window: number) {
+  if (!window) return { activeCoverage: 0, activeFlipSd: 0 };
+  const active = Array.from(counts).filter(Boolean);
+  if (!active.length) return { activeCoverage: 0, activeFlipSd: 0 };
+  const rates = active.map((count) => count / window);
+  const average = mean(rates);
+  return {
+    activeCoverage: active.length / counts.length,
+    activeFlipSd: Math.sqrt(mean(rates.map((rate) => (rate - average) ** 2))),
+  };
+}
+
+function patchiness(
+  cells: Uint8Array,
+  width: number,
+  height: number,
+  size: number,
+) {
+  const density = mean(Array.from(cells));
+  if (density === 0 || density === 1) return 0;
+  let variance = 0;
+  let randomVariance = 0;
+  let tiles = 0;
+  for (let top = 0; top < height; top += size)
+    for (let left = 0; left < width; left += size) {
+      const bottom = Math.min(top + size, height);
+      const right = Math.min(left + size, width);
+      let live = 0;
+      for (let y = top; y < bottom; y++)
+        for (let x = left; x < right; x++) live += cells[y * width + x];
+      const count = (bottom - top) * (right - left);
+      variance += count * (live / count - density) ** 2;
+      randomVariance +=
+        (density * (1 - density) * (cells.length - count)) /
+        (cells.length * (cells.length - 1));
+      tiles++;
+    }
+  if (tiles === 1) return 0;
+  variance /= cells.length;
+  return (
+    (variance - randomVariance) / (density * (1 - density) - randomVariance)
+  );
+}
+
+function spatialMetrics(
+  cells: Uint8Array,
+  width: number,
+  height: number,
+  boundary: Boundary,
+) {
+  const seen = new Uint8Array(cells.length);
+  let components = 0;
+  let largest = 0;
+  let population = 0;
+  for (const cell of cells) population += cell;
+  for (let start = 0; start < cells.length; start++) {
+    if (!cells[start] || seen[start]) continue;
+    components++;
+    let size = 0;
+    const stack = [start];
+    seen[start] = 1;
+    while (stack.length) {
+      const index = stack.pop()!;
+      size++;
+      const x = index % width;
+      const y = Math.floor(index / width);
+      for (let dy = -1; dy <= 1; dy++)
+        for (let dx = -1; dx <= 1; dx++) {
+          if (dx === 0 && dy === 0) continue;
+          let nx = x + dx;
+          let ny = y + dy;
+          if (boundary === "wrap") {
+            nx = (nx + width) % width;
+            ny = (ny + height) % height;
+          } else if (nx < 0 || nx >= width || ny < 0 || ny >= height) {
+            continue;
+          }
+          const neighbor = ny * width + nx;
+          if (cells[neighbor] && !seen[neighbor]) {
+            seen[neighbor] = 1;
+            stack.push(neighbor);
+          }
+        }
+    }
+    largest = Math.max(largest, size);
+  }
+  return {
+    patchiness8: patchiness(cells, width, height, 8),
+    patchiness32: patchiness(cells, width, height, 32),
+    components,
+    largestComponent: population ? largest / population : 0,
   };
 }
 
@@ -182,21 +323,25 @@ export function surveyConfigs(options: {
   height: number;
   generations: number;
   samplingSeed: number;
+  ruleCount?: number;
+  densities?: number[];
+  initialSeeds?: number[];
 }): ExperimentConfig[] {
-  return sampleRules(100, options.samplingSeed).flatMap((rule) =>
-    [0.1, 0.3, 0.5].flatMap((density) =>
-      [1, 2, 3].map((initialSeed) => ({
-        rule,
-        width: options.width,
-        height: options.height,
-        generations: options.generations,
-        boundary: "wrap" as const,
-        density,
-        initialSeed,
-        noiseSeed: initialSeed + 1000,
-        noiseProbability: 0,
-      })),
-    ),
+  return sampleRules(options.ruleCount ?? 100, options.samplingSeed).flatMap(
+    (rule) =>
+      (options.densities ?? [0.1, 0.3, 0.5]).flatMap((density) =>
+        (options.initialSeeds ?? [1, 2, 3]).map((initialSeed) => ({
+          rule,
+          width: options.width,
+          height: options.height,
+          generations: options.generations,
+          boundary: "wrap" as const,
+          density,
+          initialSeed,
+          noiseSeed: initialSeed + 1000,
+          noiseProbability: 0,
+        })),
+      ),
   );
 }
 export function noiseConfigs(

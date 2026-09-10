@@ -8,7 +8,13 @@ interface BatchOptions {
   concurrency: number;
   onResult: (result: BatchResult, index: number) => void;
   onDone: () => void;
+  onPaused?: () => void;
   onError: (message: string) => void;
+}
+export interface BatchController {
+  cancel: () => void;
+  pause: () => void;
+  resume: () => void;
 }
 
 export function startBatch(
@@ -18,15 +24,50 @@ export function startBatch(
     new Worker(new URL("./batch.worker.ts", import.meta.url), {
       type: "module",
     }),
-): () => void {
+): BatchController {
   const workers: BatchWorker[] = [];
+  const idle = new Set<BatchWorker>();
   let stopped = false;
+  let paused = false;
+  let pauseNotified = false;
   let next = 0;
   let completed = 0;
+  let active = 0;
   const cancel = () => {
     if (stopped) return;
     stopped = true;
     workers.forEach((worker) => worker.terminate());
+  };
+  const notifyPaused = () => {
+    if (paused && active === 0 && !pauseNotified) {
+      pauseNotified = true;
+      options.onPaused?.();
+    }
+  };
+  const dispatch = (worker: BatchWorker) => {
+    idle.delete(worker);
+    if (stopped || paused || next === configs.length) {
+      idle.add(worker);
+      notifyPaused();
+      return;
+    }
+    const index = next++;
+    active++;
+    worker.postMessage({ type: "run", config: configs[index], index });
+  };
+  const controller: BatchController = {
+    cancel,
+    pause() {
+      if (stopped || paused) return;
+      paused = true;
+      pauseNotified = false;
+      notifyPaused();
+    },
+    resume() {
+      if (stopped || !paused) return;
+      paused = false;
+      for (const worker of [...idle]) dispatch(worker);
+    },
   };
   const fail = (message: string) => {
     if (stopped) return;
@@ -36,7 +77,7 @@ export function startBatch(
   if (!configs.length) {
     cancel();
     options.onDone();
-    return cancel;
+    return controller;
   }
   const concurrency = Number.isFinite(options.concurrency)
     ? Math.max(1, Math.floor(options.concurrency))
@@ -45,11 +86,6 @@ export function startBatch(
     for (let i = 0; i < Math.min(concurrency, configs.length); i++) {
       const worker = workerFactory();
       workers.push(worker);
-      const dispatch = () => {
-        if (stopped || next === configs.length) return;
-        const index = next++;
-        worker.postMessage({ type: "run", config: configs[index], index });
-      };
       worker.onmessage = ({ data }) => {
         if (stopped) return;
         if (data.type === "error") {
@@ -57,6 +93,7 @@ export function startBatch(
           return;
         }
         if (data.type !== "result") return;
+        active--;
         options.onResult(data.result, data.index);
         if (stopped) return;
         if (++completed === configs.length) {
@@ -64,17 +101,17 @@ export function startBatch(
           options.onDone();
         } else {
           try {
-            dispatch();
+            dispatch(worker);
           } catch (error) {
             fail(error instanceof Error ? error.message : String(error));
           }
         }
       };
       worker.onerror = (event) => fail(event.message || "Batch worker failed.");
-      dispatch();
+      dispatch(worker);
     }
   } catch (error) {
     fail(error instanceof Error ? error.message : String(error));
   }
-  return cancel;
+  return controller;
 }
