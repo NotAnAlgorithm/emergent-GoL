@@ -33,6 +33,14 @@ The production build is written to `dist/`. Browser installation is required onc
 
 The default grid is 128 × 128. Updates are synchronous, using the eight-cell Moore neighborhood. Noise independently flips each cell after the normal update with probability `p`; `p = 0` is noiseless. Initialization and noise use separate seeded random streams.
 
+Both experiment tables support column sorting and filtering. Text filters match substrings; numeric filters accept exact values, `>=10`, `<=20`, or inclusive ranges such as `5..20`. Percentages use their displayed 0–100 units. Replicate columns compare the mean, not its standard deviation. Filters combine across columns; reset clears them. Exports retain the full study.
+
+Playback targets up to 1,000 generations/second and reports its achieved rate. Multiple generations run between redraws within a short frame budget; actual speed depends on grid size and noise. CSV retains the most recent 10,000 generations. Independent batch runs use 1, 2, or 4 workers (limited by reported hardware), with deterministic results regardless of completion order. Parallel runs speed up surveys; a single world's successive generations remain sequential.
+
+A local headless Chromium check on September 10, 2026 measured approximately 999, 346, 116, and 25 generations/second at 128², 256², 512², and 1024² respectively (Intel Core Ultra 7 155H, Playwright 1.61.1; Conway, 30% random start, no noise, target 1,000/s). The 9-run pilot at 128² for 1,000 generations took 2.95 seconds with one worker and 1.09 seconds with four. These short development-server measurements are illustrative, not cross-device guarantees; noisy comparisons also evolve a control grid and cost more.
+
+The playground supports grids through 1024 × 1024. **Expand into empty space** centers the exact current state in a grid twice as wide and tall and begins a new experiment. Start with no noise and fixed dead boundaries when investigating isolated growth; `B0` rules do not maintain an empty background. Padding reduces global density automatically, so inspect live-cell counts and object size as well. Batch grids remain capped at 256 × 256 to limit retained data.
+
 ## Suggested investigation
 
 - **Survey:** 100 distinct sampled rules × densities 10%, 30%, 50% × three seeds, each for 1,000 generations. Reuse starting grids across rules for comparison.
@@ -40,6 +48,10 @@ The default grid is 128 × 128. Updates are synchronous, using the eight-cell Mo
 - **Follow-up:** refine any interesting noise interval and repeat at 64 × 64 and 256 × 256 before drawing conclusions about a transition.
 
 Density is the live-cell fraction. Activity is the fraction of cells changed during a generation. Neither alone measures complexity. Classifications describe the tested conditions, not universal properties of a rule. Finite grids and boundaries can alter behavior; empty states can revive under `B0` rules, so emptiness is not a general stopping condition.
+
+See [research directions and literature](docs/complexity-directions.md) for object-scale measurements, information storage/transfer, controlled blob experiments, and interpreting noise.
+
+`node scripts/blob-study.mjs` reproduces the focused growth follow-up: it continues `B368/S1348` to generation 3,000 and pads its generation-1,000 snapshot into three larger empty domains. The saved notebook [snapshot](docs/results/blob-snapshot.json) can be imported into the playground.
 
 Use [the observation notebook](docs/observations.md) during exploration and [the report template](docs/report.md) to separate reproducible findings from hypotheses. Browser storage is local to the site and browser profile and can be cleared; exported files are the portable backup. There are no accounts or server-side backups.
 

@@ -1,4 +1,7 @@
 import "./style.css";
+import { expandGrid } from "./grid-tools";
+import { enhanceTable } from "./table-controls";
+import { startBatch } from "./batch-pool";
 import {
   parseRule,
   formatRule,
@@ -27,11 +30,11 @@ document.querySelector("#app")!.innerHTML = `
 <header><a class="brand" href="#">◈ <span>EMERGENT</span></a><span class="subtitle">A laboratory for simple rules & complex worlds</span><span class="badge">CELLULAR AUTOMATA / 01</span></header>
 <main><div class="intro"><div><p class="eyebrow">EXPLORE · OBSERVE · DISCOVER</p><h1>Small rules.<br><em>Unexpected worlds.</em></h1></div><p>Draw a beginning. Change a rule.<br>Watch what emerges, then find out why.</p></div>
 <nav aria-label="Workspace"><button id="lab-tab" class="tab active">01 / Playground</button><button id="experiments-tab" class="tab">02 / Experiments</button><button id="notebook-tab" class="tab">03 / Notebook</button></nav>
-<section id="lab" class="workspace"><aside class="panel"><div class="section-title">WORLD <span>01</span></div><label>Starting pattern<select id="pattern"><option value="random">Random field</option><option value="glider">Glider</option><option value="blinker">Blinker</option><option value="block">Block</option><option value="empty">Empty canvas</option></select></label><div class="two"><label>Grid size<select id="size"><option>64</option><option selected>128</option><option>256</option></select></label><label>Edges<select id="boundary"><option value="wrap">Wrap around</option><option value="dead">Fixed dead</option></select></label></div><label>Initial density <output id="density-out">30%</output><input id="density" type="range" min="0" max="100" value="30"></label><label>Random seed<input id="seed" type="number" min="0" max="4294967295" value="42"></label><button id="generate" class="wide">Generate world ↗</button>
+<section id="lab" class="workspace"><aside class="panel"><div class="section-title">WORLD <span>01</span></div><label>Starting pattern<select id="pattern"><option value="random">Random field</option><option value="glider">Glider</option><option value="blinker">Blinker</option><option value="block">Block</option><option value="empty">Empty canvas</option></select></label><div class="two"><label>Grid size<select id="size"><option>64</option><option selected>128</option><option>256</option><option>512</option><option>1024</option></select></label><label>Edges<select id="boundary"><option value="wrap">Wrap around</option><option value="dead">Fixed dead</option></select></label></div><label>Initial density <output id="density-out">30%</output><input id="density" type="range" min="0" max="100" value="30"></label><label>Random seed<input id="seed" type="number" min="0" max="4294967295" value="42"></label><button id="generate" class="wide">Generate world ↗</button><button id="expand" class="wide">Expand into empty space ↗</button><p class="help">Center the current world in a grid twice as wide and tall, up to 1024 × 1024. This begins a new experiment.</p>
 <div class="section-title">RULE <span>02</span></div><div class="presets"><button id="conway">Conway</button><button id="highlife">HighLife</button></div><label>Birth / survival<input id="rule" value="B3/S23" spellcheck="false" aria-describedby="rule-help"></label><p id="rule-help" class="help">Choose the neighbor counts that bring a cell to life or keep it alive.</p><span class="row-label">BIRTH</span><div id="birth" class="counts"></div><span class="row-label">SURVIVAL</span><div id="survival" class="counts"></div>
 <div class="section-title">PERTURBATION <span>03</span></div><label>Noise probability<input id="noise" type="number" min="0" max="1" step="0.0001" value="0"></label><p class="help">Each cell flips independently after every update. Zero preserves the original rule.</p><label>Noise seed<input id="noise-seed" type="number" min="0" max="4294967295" value="7"></label></aside>
-<div class="stage"><div class="stage-heading"><span><i class="dot"></i> <span id="state">PAUSED</span></span><span id="world-label">128 × 128 · WRAP</span></div><div class="canvas-wrap"><canvas id="grid" width="768" height="768" aria-label="Cellular automaton grid. Drag to draw; shift-drag to erase."></canvas><canvas id="comparison" width="768" height="768" hidden aria-label="Matched noiseless simulation"></canvas></div><div class="canvas-caption"><span>DRAG TO DRAW · SHIFT TO ERASE</span><span id="comparison-label">B3/S23</span></div><div class="transport"><button id="play" class="primary">▶ Run</button><button id="step">Step →</button><button id="reset">↺ Restore</button><button id="clear">Clear</button><label class="speed">Speed <input id="speed" type="range" min="1" max="60" value="15"><output id="speed-out">15/s</output></label></div><div class="stats"><div><span>GENERATION</span><strong id="generation">0</strong></div><div><span>LIVE CELLS</span><strong id="population">0</strong></div><div><span>DENSITY</span><strong id="live-density">0%</strong></div><div><span>ACTIVITY</span><strong id="activity">0%</strong></div></div><details open><summary>Measurements over time <span class="help">density / activity</span></summary><canvas id="chart" width="900" height="140" aria-label="Density and activity chart"></canvas><p class="help">Green: density · amber: activity. These describe behavior, not complexity.</p></details><div class="savebar"><label><input id="paired" type="checkbox"> Compare with no noise</label><button id="screenshot">Save image</button><button id="csv">Export CSV</button></div><div class="record"><input id="name" placeholder="Name this discovery" aria-label="Discovery name"><textarea id="notes" placeholder="What did you observe? What would you test next?" aria-label="Observation notes"></textarea><button id="save" class="primary">＋ Save to notebook</button></div></div></section>
-<section id="experiments" hidden><div class="experiment-intro"><h2>Look beyond a single world.</h2><p>Compare rules using matched starting grids. Runs happen in the background; you can cancel and keep completed results.</p></div><div class="batch-controls panel"><label>Protocol<select id="protocol"><option value="survey">100-rule survey · 900 runs</option><option value="noise">Noise study · 50 runs / rule</option><option value="pilot">Quick pilot · 9 runs</option></select></label><label>Grid<select id="batch-size"><option>64</option><option selected>128</option><option>256</option></select></label><label>Generations<input id="duration" type="number" min="1" max="10000" value="1000"></label><label>Sampling seed<input id="sampling-seed" type="number" value="2026" min="0" max="4294967295"></label><button id="start-batch" class="primary">Run experiments ↗</button><button id="cancel-batch" disabled>Cancel</button><button id="export-batch">Export results</button></div><p id="batch-info" class="help">Survey: 3 densities × 3 seeds per rule. Noise study uses the current playground rule and 10 matched seeds per noise level.</p><progress id="progress" max="1" value="0"></progress><p id="batch-status" role="status">Ready to investigate.</p><div id="aggregates"></div><div class="table-wrap"><table><thead><tr><th>Rule</th><th>Start density</th><th>Seed</th><th>Noise</th><th>Mean density</th><th>Mean activity</th><th>Observation</th><th>Replay</th></tr></thead><tbody id="results"></tbody></table></div><p class="help">Means use the final 500 generations (or the full run if shorter). Tags are your observations; a single run does not establish a rule’s behavior.</p></section>
+<div class="stage"><div class="stage-heading"><span><i class="dot"></i> <span id="state">PAUSED</span></span><span id="world-label">128 × 128 · WRAP</span></div><div class="canvas-wrap"><canvas id="grid" width="768" height="768" aria-label="Cellular automaton grid. Drag to draw; shift-drag to erase."></canvas><canvas id="comparison" width="768" height="768" hidden aria-label="Matched noiseless simulation"></canvas></div><div class="canvas-caption"><span>DRAG TO DRAW · SHIFT TO ERASE</span><span id="comparison-label">B3/S23</span></div><div class="transport"><button id="play" class="primary">▶ Run</button><button id="step">Step →</button><button id="reset">↺ Restore</button><button id="clear">Clear</button><label class="speed">Speed <input id="speed" type="range" min="1" max="1000" value="15"><output id="speed-out">15/s</output><span id="actual-speed" aria-live="off">0/s actual</span></label></div><div class="stats"><div><span>GENERATION</span><strong id="generation">0</strong></div><div><span>LIVE CELLS</span><strong id="population">0</strong></div><div><span>DENSITY</span><strong id="live-density">0%</strong></div><div><span>ACTIVITY</span><strong id="activity">0%</strong></div></div><details open><summary>Measurements over time <span class="help">density / activity</span></summary><canvas id="chart" width="900" height="140" aria-label="Density and activity chart"></canvas><p class="help">Green: density · amber: activity. These describe behavior, not complexity.</p></details><div class="savebar"><label><input id="paired" type="checkbox"> Compare with no noise</label><button id="screenshot">Save image</button><button id="csv">Export CSV</button></div><div class="record"><input id="name" placeholder="Name this discovery" aria-label="Discovery name"><textarea id="notes" placeholder="What did you observe? What would you test next?" aria-label="Observation notes"></textarea><button id="save" class="primary">＋ Save to notebook</button></div></div></section>
+<section id="experiments" hidden><div class="experiment-intro"><h2>Look beyond a single world.</h2><p>Compare rules using matched starting grids. Runs happen in the background; you can cancel and keep completed results.</p></div><div class="batch-controls panel"><label>Protocol<select id="protocol"><option value="survey">100-rule survey · 900 runs</option><option value="noise">Noise study · 50 runs / rule</option><option value="pilot">Quick pilot · 9 runs</option></select></label><label>Grid<select id="batch-size"><option>64</option><option selected>128</option><option>256</option></select></label><label>Generations<input id="duration" type="number" min="1" max="10000" value="1000"></label><label>Sampling seed<input id="sampling-seed" type="number" value="2026" min="0" max="4294967295"></label><label>Parallel runs<select id="concurrency"><option>1</option><option>2</option><option selected>4</option></select></label><button id="start-batch" class="primary">Run experiments ↗</button><button id="cancel-batch" disabled>Cancel</button><button id="export-batch">Export results</button></div><p id="batch-info" class="help">Survey: 3 densities × 3 seeds per rule. Noise study uses the current playground rule and 10 matched seeds per noise level.</p><progress id="progress" max="1" value="0"></progress><p id="batch-status" role="status">Ready to investigate.</p><div id="aggregates"></div><div class="table-wrap"><table><thead><tr><th>Rule</th><th>Start density</th><th>Seed</th><th>Noise</th><th>Mean density</th><th>Mean activity</th><th>Observation</th><th>Replay</th></tr></thead><tbody id="results"></tbody></table></div><p class="help">Means use the final 500 generations (or the full run if shorter). Tags are your observations; a single run does not establish a rule’s behavior.</p></section>
 <section id="notebook" hidden><div class="experiment-intro"><h2>Keep the interesting things.</h2><p>Saved beginnings, settings, and observations. Export a discovery to share a reproducible experiment.</p></div><label class="import">Import discovery <input id="import" type="file" accept=".json,application/json"></label><div id="records" class="records"></div></section><p id="message" role="status" aria-live="polite"></p></main><footer>EMERGENT / An open-ended study of order, noise & possibility.<span>Every discovery starts with a small change.</span></footer>`;
 let width = 128,
   height = 128,
@@ -50,8 +53,8 @@ let width = 128,
     activity: number;
     difference: number;
   }[] = [],
-  worker: Worker | undefined,
-  results: BatchResult[] = [],
+  cancelBatch: (() => void) | undefined,
+  results: (BatchResult & { index: number })[] = [],
   batchMetadata: Record<string, unknown> = {};
 const canvas = $<HTMLCanvasElement>("grid");
 const comparison = $<HTMLCanvasElement>("comparison");
@@ -71,6 +74,7 @@ function pause() {
   playing = false;
   $("play").textContent = "▶ Run";
   $("state").textContent = "PAUSED";
+  $("actual-speed").textContent = "0/s actual";
 }
 function config(): ExperimentConfig {
   return {
@@ -101,7 +105,25 @@ function fresh() {
   render();
 }
 function paint(target: HTMLCanvasElement, cells: Uint8Array) {
+  const pixelWidth = width > 256 ? width : 768;
+  const pixelHeight = Math.round((pixelWidth * height) / width);
+  if (target.width !== pixelWidth || target.height !== pixelHeight) {
+    target.width = pixelWidth;
+    target.height = pixelHeight;
+    target.style.aspectRatio = `${width} / ${height}`;
+  }
   const c = target.getContext("2d")!;
+  if (width > 256) {
+    const pixels = c.createImageData(width, height);
+    for (let i = 0; i < cells.length; i++) {
+      pixels.data[i * 4] = cells[i] ? 188 : 16;
+      pixels.data[i * 4 + 1] = cells[i] ? 232 : 42;
+      pixels.data[i * 4 + 2] = cells[i] ? 160 : 36;
+      pixels.data[i * 4 + 3] = 255;
+    }
+    c.putImageData(pixels, 0, 0);
+    return;
+  }
   c.fillStyle = "#102a24";
   c.fillRect(0, 0, target.width, target.height);
   c.fillStyle = "#bce8a0";
@@ -116,6 +138,7 @@ function paint(target: HTMLCanvasElement, cells: Uint8Array) {
       );
 }
 function render() {
+  if (history.length > 10000) history.splice(0, history.length - 10000);
   paint(canvas, grid);
   if ($<HTMLInputElement>("paired").checked) paint(comparison, baseline);
   const live = grid.reduce((a, b) => a + b, 0);
@@ -164,7 +187,7 @@ function advance() {
   const next = step(grid, width, height, rule, boundary, noise, rng);
   const m = metrics(grid, next);
   grid = next;
-  baseline = step(baseline, width, height, rule, boundary);
+  baseline = noise > 0 ? step(baseline, width, height, rule, boundary) : grid;
   generation++;
   history.push({
     generation,
@@ -172,8 +195,6 @@ function advance() {
     difference:
       grid.reduce((n, v, i) => n + Number(v !== baseline[i]), 0) / grid.length,
   });
-  if (history.length > 10000) history.shift();
-  render();
 }
 function toggles() {
   for (const key of ["birth", "survival"] as const) {
@@ -222,6 +243,21 @@ $("generate").onclick = () => {
         : patternGrid(p as "block" | "blinker" | "glider", width, height);
   fresh();
 };
+$("expand").onclick = () => {
+  try {
+    const expanded = expandGrid(grid, width, height);
+    width = expanded.width;
+    height = expanded.height;
+    grid = expanded.cells;
+    $<HTMLSelectElement>("size").value = String(width);
+    fresh();
+    say(
+      "Current state centered in empty space. Density changes with domain size; compare live-cell counts and growth as well.",
+    );
+  } catch (error) {
+    say(String(error));
+  }
+};
 $("density").oninput = () => {
   $("density-out").textContent = num("density") + "%";
 };
@@ -244,13 +280,21 @@ $("noise").onchange = () => {
 };
 $("noise-seed").onchange = () => fresh();
 $("play").onclick = () => {
-  playing = !playing;
-  $("play").textContent = playing ? "Ⅱ Pause" : "▶ Run";
-  $("state").textContent = playing ? "RUNNING" : "PAUSED";
+  if (playing) {
+    pause();
+    return;
+  }
+  playing = true;
+  last = performance.now();
+  rateStart = last;
+  rateSteps = pendingSteps = 0;
+  $("play").textContent = "Ⅱ Pause";
+  $("state").textContent = "RUNNING";
 };
 $("step").onclick = () => {
   pause();
   advance();
+  render();
 };
 $("reset").onclick = () => {
   grid = initial.slice();
@@ -296,10 +340,36 @@ canvas.onpointercancel = () => {
 };
 canvas.oncontextmenu = (e) => e.preventDefault();
 let last = 0;
+let pendingSteps = 0;
+let rateStart = 0;
+let rateSteps = 0;
 function frame(time: number) {
-  if (playing && time - last >= 1000 / num("speed")) {
-    advance();
-    last = time;
+  const elapsed = Math.min(100, time - last);
+  last = time;
+  if (playing && !document.hidden) {
+    pendingSteps = Math.min(
+      100,
+      pendingSteps + (elapsed * num("speed")) / 1000,
+    );
+    const deadline = performance.now() + 8;
+    let steps = 0;
+    while (pendingSteps >= 1 && performance.now() < deadline) {
+      advance();
+      pendingSteps--;
+      steps++;
+    }
+    rateSteps += steps;
+    if (steps) render();
+  } else {
+    pendingSteps = 0;
+    rateSteps = 0;
+    rateStart = time;
+  }
+  if (time - rateStart >= 1000) {
+    $("actual-speed").textContent =
+      `${Math.round((rateSteps * 1000) / (time - rateStart))}/s actual`;
+    rateStart = time;
+    rateSteps = 0;
   }
   requestAnimationFrame(frame);
 }
@@ -466,8 +536,9 @@ $("import").onchange = async () => {
   }
   $<HTMLInputElement>("import").value = "";
 };
-function addResult(result: BatchResult) {
+function addResult(result: BatchResult & { index: number }) {
   results.push(result);
+  results.sort((a, b) => a.index - b.index);
   const tr = document.createElement("tr");
   const c = result.config;
   for (const v of [
@@ -509,8 +580,8 @@ function addResult(result: BatchResult) {
   $("results").append(tr);
 }
 function stopBatch() {
-  worker?.terminate();
-  worker = undefined;
+  cancelBatch?.();
+  cancelBatch = undefined;
   $<HTMLButtonElement>("start-batch").disabled = false;
   $<HTMLButtonElement>("cancel-batch").disabled = true;
 }
@@ -552,6 +623,7 @@ $("start-batch").onclick = () => {
     protocol,
     samplingSeed: protocol === "noise" ? null : seed,
     createdAt: new Date().toISOString(),
+    concurrency: num("concurrency"),
   };
   results = [];
   $("results").replaceChildren();
@@ -561,34 +633,32 @@ $("start-batch").onclick = () => {
   $<HTMLButtonElement>("start-batch").disabled = true;
   $<HTMLButtonElement>("cancel-batch").disabled = false;
   $("batch-status").textContent = `Running 0 / ${configs.length}…`;
-  worker = new Worker(new URL("./batch.worker.ts", import.meta.url), {
-    type: "module",
-  });
-  worker.onmessage = (e) => {
-    const d = e.data;
-    if (d.type === "result") {
-      addResult(d.result);
+  cancelBatch = startBatch(configs, {
+    concurrency: num("concurrency"),
+    onResult(result, index) {
+      addResult({ ...result, index });
       $<HTMLProgressElement>("progress").value = results.length;
       $("batch-status").textContent =
         `Completed ${results.length} / ${configs.length}`;
-    } else if (d.type === "done") {
+    },
+    onDone() {
       showAggregates();
       stopBatch();
       $("batch-status").textContent =
         `Finished ${results.length} runs. Export results to preserve them.`;
-    } else if (d.type === "error") {
+    },
+    onError(message) {
       stopBatch();
-      say(d.message);
-    }
-  };
-  worker.onerror = (e) => {
-    stopBatch();
-    say(`Experiment failed: ${e.message}`);
-  };
-  worker.postMessage({ type: "start", configs });
+      showAggregates();
+      $("batch-status").textContent =
+        `Stopped after ${results.length} completed runs.`;
+      say(`Experiment failed: ${message}`);
+    },
+  });
 };
 $("cancel-batch").onclick = () => {
   stopBatch();
+  showAggregates();
   $("batch-status").textContent =
     `Cancelled. ${results.length} completed runs retained.`;
 };
@@ -611,6 +681,16 @@ $("export-batch").onclick = () => {
 toggles();
 render();
 showRecords();
+enhanceTable($("results").closest("table")!);
+const availableWorkers = Math.max(
+  1,
+  Math.min(4, (navigator.hardwareConcurrency || 2) - 1),
+);
+const concurrency = $<HTMLSelectElement>("concurrency");
+for (const option of concurrency.options)
+  option.disabled = Number(option.value) > availableWorkers;
+concurrency.value =
+  availableWorkers >= 4 ? "4" : availableWorkers >= 2 ? "2" : "1";
 
 function showAggregates() {
   const groups = aggregateResults(results);
@@ -624,7 +704,9 @@ function showAggregates() {
   const table = document.createElement("table");
   const head = document.createElement("tr");
   for (const label of [
-    "Rule / noise / initial density",
+    "Rule",
+    "Noise",
+    "Start density",
     "Trials",
     "Density",
     "Activity",
@@ -638,7 +720,9 @@ function showAggregates() {
   for (const g of groups) {
     const row = document.createElement("tr");
     for (const text of [
-      g.rule + " / " + g.noiseProbability + " / " + g.density * 100 + "%",
+      g.rule,
+      String(g.noiseProbability),
+      g.density * 100 + "%",
       String(g.count),
       percent(g.densityMean, g.densitySd),
       percent(g.activityMean, g.activitySd),
@@ -655,6 +739,7 @@ function showAggregates() {
   wrap.append(table);
   details.append(wrap);
   root.append(details);
+  enhanceTable(table);
   if (
     groups.length > 1 &&
     groups.every(

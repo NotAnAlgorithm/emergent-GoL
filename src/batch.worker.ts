@@ -5,20 +5,16 @@ import {
 } from "./experiments";
 
 self.onmessage = (
-  event: MessageEvent<{ type: "start"; configs: ExperimentConfig[] }>,
+  event: MessageEvent<{ type: "run"; config: ExperimentConfig; index: number }>,
 ) => {
-  if (event.data.type !== "start") return;
+  if (event.data.type !== "run") return;
   try {
-    const { configs } = event.data;
-    for (let index = 0; index < configs.length; index++) {
-      self.postMessage({
-        type: "result",
-        result: compactResult(runExperiment(configs[index])),
-        index,
-        total: configs.length,
-      });
-    }
-    self.postMessage({ type: "done" });
+    const { config, index } = event.data;
+    self.postMessage({
+      type: "result",
+      result: compactResult(runExperiment(config)),
+      index,
+    });
   } catch (error) {
     self.postMessage({
       type: "error",

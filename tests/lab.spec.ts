@@ -137,6 +137,11 @@ test("pilot completes, exports results, and opens a replay", async ({
   await expect(page.locator("#results tr")).toHaveCount(9);
   await expect(page.locator("#start-batch")).toBeEnabled();
   await expect(page.locator("#cancel-batch")).toBeDisabled();
+  const firstCells = await page
+    .locator("#results tr")
+    .first()
+    .locator("td")
+    .allTextContents();
   await page
     .locator("#results tr")
     .first()
@@ -149,7 +154,15 @@ test("pilot completes, exports results, and opens a replay", async ({
   const exported = JSON.parse(await readFile((await download.path())!, "utf8"));
   expect(exported.results).toHaveLength(9);
   expect(exported.results[0].config.generations).toBe(2);
-  expect(exported.results[0].tag).toBe("Interesting");
+  const tagged = exported.results.find(
+    (result: {
+      config: { rule: string; density: number; initialSeed: number };
+    }) =>
+      result.config.rule === firstCells[0] &&
+      result.config.density === parseFloat(firstCells[1]) / 100 &&
+      result.config.initialSeed === Number(firstCells[2]),
+  );
+  expect(tagged?.tag).toBe("Interesting");
   expect(exported.results[0]).not.toHaveProperty("finalGrid");
   expect(exported.results[0]).not.toHaveProperty("measurements");
   await page
@@ -266,11 +279,11 @@ test("noise study renders replicate summaries and exports matched controls", asy
     .filter({ has: page.locator("td") });
   await expect(groups).toHaveCount(5);
   for (let index = 0; index < 5; index++) {
-    await expect(groups.nth(index).locator("td").nth(1)).toHaveText("10");
-    await expect(groups.nth(index).locator("td").nth(2)).toContainText("±");
-    await expect(groups.nth(index).locator("td").nth(3)).toContainText("±");
+    await expect(groups.nth(index).locator("td").nth(3)).toHaveText("10");
+    await expect(groups.nth(index).locator("td").nth(4)).toContainText("±");
+    await expect(groups.nth(index).locator("td").nth(5)).toContainText("±");
   }
-  await expect(groups.first().locator("td").nth(4)).toHaveText("0.00% ± 0.00%");
+  await expect(groups.first().locator("td").nth(6)).toHaveText("0.00% ± 0.00%");
   const downloading = page.waitForEvent("download");
   await page.locator("#export-batch").click();
   const download = await downloading;

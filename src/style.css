@@ -304,6 +304,37 @@ output {
 .speed output {
   min-width: 28px;
 }
+#actual-speed {
+  color: #7e8875;
+  white-space: nowrap;
+}
+#expand {
+  margin-top: 8px;
+}
+.table-controls {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  flex-wrap: wrap;
+  margin: 14px 0 8px;
+  color: #7e8875;
+  font-size: 10px;
+}
+.table-sort {
+  padding: 0;
+  border: 0;
+  font: inherit;
+  text-transform: inherit;
+}
+.table-filters input {
+  min-width: 85px;
+  margin: 0 !important;
+  font-weight: normal;
+}
+.table-empty {
+  color: #7e8875;
+  text-align: center;
+}
 .stats {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
@@ -484,12 +515,9 @@ footer {
   .workspace {
     grid-template-columns: 275px minmax(0, 1fr);
   }
-  .canvas-wrap {
-    max-height: 720px;
-  }
   .canvas-wrap canvas {
-    max-height: 696px;
-    object-fit: contain;
+    max-width: 696px;
+    margin-inline: auto;
   }
 }
 @media (max-width: 800px) {
