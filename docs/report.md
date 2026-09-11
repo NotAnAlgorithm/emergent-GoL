@@ -83,9 +83,9 @@ Record the tested revision, environment, commands, outcomes, and any known failu
 
 | Validation                         | Revision/environment                   | Outcome                         |
 | ---------------------------------- | -------------------------------------- | ------------------------------- |
-| Unit tests (`npm test`)            | Node 22.23.2                           | 52 passed                       |
+| Unit tests (`npm test`)            | Node 22.23.2                           | 53 passed                       |
 | Production build (`npm run build`) | TypeScript 7 / Vite 8                  | Passed                          |
-| Browser tests (`npm run test:e2e`) | Chromium / Playwright 1.61             | 15 passed                       |
+| Browser tests (`npm run test:e2e`) | Chromium / Playwright 1.61             | 16 passed                       |
 | Full automated research            | Intel Core Ultra 7 155H / Node 22.23.2 | Survey: 389.2 s; noise: 254.3 s |
 
 Performance measurements must name the computer/browser and workload. Do not extrapolate one machine's result to every user's device.

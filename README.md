@@ -28,7 +28,7 @@ The production build is written to `dist/`. Browser installation is required onc
 2. Play, pause, or advance one generation. Restore the initial state to repeat an experiment.
 3. Change birth/survival counts using rule notation or toggles. `B3/S23` means dead cells are born with three neighbors; live cells survive with two or three.
 4. Compare wrapping boundaries with fixed dead boundaries. Record the boundary choice when interpreting an observation.
-5. Save interesting runs with notes. Download experiment JSON for replay, measurement CSV for analysis, and a screenshot for the notebook.
+5. Save interesting runs with notes. Notebook discoveries can be exported individually or selected and exported together as an importable JSON bundle.
 6. Use the experiment tools to survey sampled rules or compare noise conditions. A survey can pause after its active worker jobs finish and resume without losing results.
 
 The default grid is 128 × 128. Updates are synchronous, using the eight-cell Moore neighborhood. Noise independently flips each cell after the normal update with probability `p`; `p = 0` is noiseless. Initialization and noise use separate seeded random streams.
@@ -37,7 +37,7 @@ Both experiment tables support column sorting and filtering. Text filters match 
 
 Survey presets trade repeated starts for rule coverage: standard tests 100 rules × 9 starts, broad tests 500 × 2, wide tests 1,000 × 1, and the pilot tests 9 × 1. Broad and wide scans use 10% initial density. Use them to find candidates, then repeat promising rules with more seeds, densities, sizes, and longer runs.
 
-Playback targets up to 1,000 generations/second and reports its achieved rate. Multiple generations run between redraws within a short frame budget; actual speed depends on grid size and noise. CSV retains the most recent 10,000 generations. Independent batch runs use 1, 2, or 4 workers (limited by reported hardware), with deterministic results regardless of completion order. Parallel runs speed up surveys; a single world's successive generations remain sequential.
+Playback targets up to 1,000 generations/second and reports its achieved rate. Multiple generations run between redraws within a short frame budget; actual speed depends on grid size and noise. CSV retains the most recent 10,000 generations. Independent batch runs can use 1, 2, 4, 8, or 16 workers, with deterministic results regardless of completion order. Higher counts can consume substantial CPU and memory. A single world's successive generations remain sequential.
 
 A local headless Chromium check on September 10, 2026 measured approximately 999, 346, 116, and 25 generations/second at 128², 256², 512², and 1024² respectively (Intel Core Ultra 7 155H, Playwright 1.61.1; Conway, 30% random start, no noise, target 1,000/s). The 9-run pilot at 128² for 1,000 generations took 2.95 seconds with one worker and 1.09 seconds with four. These short development-server measurements are illustrative, not cross-device guarantees; noisy comparisons also evolve a control grid and cost more.
 

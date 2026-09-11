@@ -112,6 +112,44 @@ test("notebook saves, persists, exports, imports, and replays exact beginnings",
   await expect(page.locator("#population")).toHaveText("3");
 });
 
+test("notebook exports and imports selected discoveries together", async ({
+  page,
+}) => {
+  await makeBlinker(page);
+  await page.locator("#name").fill("First");
+  await page.locator("#save").click();
+  await page.locator("#name").fill("Second");
+  await page.locator("#save").click();
+  await page.locator("#notebook-tab").click();
+  await page.locator("#select-all-records").check();
+  const downloading = page.waitForEvent("download");
+  await page.locator("#export-selected").click();
+  const download = await downloading;
+  const contents = await readFile((await download.path())!);
+  const bundle = JSON.parse(contents.toString());
+  expect(bundle.kind).toBe("emergent-notebook");
+  expect(bundle.records.map((record: { name: string }) => record.name)).toEqual(
+    ["Second", "First"],
+  );
+  await page
+    .locator(".record-card")
+    .first()
+    .getByRole("button", { name: "Delete", exact: true })
+    .click();
+  await page
+    .locator(".record-card")
+    .first()
+    .getByRole("button", { name: "Delete", exact: true })
+    .click();
+  await page.locator("#import").setInputFiles({
+    name: "discoveries.json",
+    mimeType: "application/json",
+    buffer: contents,
+  });
+  await expect(page.locator("#message")).toHaveText("2 discoveries imported.");
+  await expect(page.locator(".record-card")).toHaveCount(2);
+});
+
 test("malformed discovery files are rejected without adding records", async ({
   page,
 }) => {
@@ -206,6 +244,13 @@ test("a survey can pause between runs and resume", async ({ page }) => {
     "Wide · 1,000 rules × 1 start",
     "Noise study · 50 runs",
     "Quick pilot · 9 rules",
+  ]);
+  await expect(page.locator("#concurrency option")).toHaveText([
+    "1",
+    "2",
+    "4",
+    "8",
+    "16",
   ]);
   await page.evaluate(() => {
     (document.querySelector("#start-batch") as HTMLButtonElement).click();

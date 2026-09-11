@@ -464,6 +464,20 @@ td input {
   gap: 20px;
   margin: 25px 0;
 }
+.notebook-tools {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  flex-wrap: wrap;
+  margin: 24px 0;
+}
+.notebook-tools label {
+  margin: 0;
+}
+.record-select {
+  float: right;
+  margin: 0;
+}
 .record-card {
   padding: 20px;
   border: 1px solid var(--line);

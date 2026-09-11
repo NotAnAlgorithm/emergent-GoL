@@ -415,6 +415,7 @@ function validateRecord(value: unknown): asserts value is SavedRecord {
   validateGrid(r.initialGrid, r.config);
 }
 const MAX_RECORD_BYTES = 5 * 1024 * 1024;
+const MAX_BUNDLE_BYTES = 50 * 1024 * 1024;
 export function exportRecord(record: SavedRecord): string {
   validateRecord(record);
   const json = JSON.stringify(record, null, 2);
@@ -431,6 +432,54 @@ export function importRecord(json: string): SavedRecord {
   const record: unknown = JSON.parse(json);
   validateRecord(record);
   return record;
+}
+
+export function exportRecords(records: SavedRecord[]): string {
+  if (!records.length) throw new Error("Select at least one discovery.");
+  records.forEach((record) => exportRecord(record));
+  const json = JSON.stringify(
+    {
+      kind: "emergent-notebook",
+      version: 1,
+      engineVersion: "1.0.0",
+      records,
+    },
+    null,
+    2,
+  );
+  if (new TextEncoder().encode(json).length > MAX_BUNDLE_BYTES)
+    throw new Error("Notebook bundles must be at most 50 MB.");
+  return json;
+}
+
+export function importRecords(json: string): SavedRecord[] {
+  if (new TextEncoder().encode(json).length > MAX_BUNDLE_BYTES)
+    throw new Error("Notebook bundles must be at most 50 MB.");
+  const value: unknown = JSON.parse(json);
+  if (
+    !value ||
+    typeof value !== "object" ||
+    !("kind" in value) ||
+    value.kind !== "emergent-notebook"
+  )
+    return [importRecord(json)];
+  const bundle = value as {
+    version?: unknown;
+    engineVersion?: unknown;
+    records?: unknown;
+  };
+  if (
+    bundle.version !== 1 ||
+    bundle.engineVersion !== "1.0.0" ||
+    !Array.isArray(bundle.records) ||
+    !bundle.records.length
+  )
+    throw new Error("Invalid notebook bundle.");
+  for (const record of bundle.records) {
+    validateRecord(record);
+    exportRecord(record);
+  }
+  return bundle.records;
 }
 export function measurementsCsv(
   source: RunResult | readonly Measurement[],

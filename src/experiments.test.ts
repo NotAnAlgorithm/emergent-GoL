@@ -5,7 +5,9 @@ import {
   compactResult,
   createRecord,
   exportRecord,
+  exportRecords,
   importRecord,
+  importRecords,
   measurementsCsv,
   noiseConfigs,
   runExperiment,
@@ -190,6 +192,25 @@ describe("experiment files", () => {
       result,
     );
     expect(measurementsCsv(result).split("\n")).toHaveLength(13);
+  });
+  it("round-trips notebook bundles and still imports single discoveries", () => {
+    const first = createRecord(config, Array(64).fill(0), "First");
+    const second = createRecord(config, Array(64).fill(1), "Second");
+    expect(importRecords(exportRecords([first, second]))).toEqual([
+      first,
+      second,
+    ]);
+    expect(importRecords(exportRecord(first))).toEqual([first]);
+    expect(() => exportRecords([])).toThrow(/Select/);
+    expect(() =>
+      importRecords(
+        JSON.stringify({
+          kind: "emergent-notebook",
+          version: 2,
+          records: [],
+        }),
+      ),
+    ).toThrow(/bundle/);
   });
   it("rejects unsupported versions, invalid cells, and invalid metadata", () => {
     const saved = createRecord(config, Array(64).fill(0), "Trial");

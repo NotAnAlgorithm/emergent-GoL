@@ -65,7 +65,7 @@ test("parallel experiments reproduce serial results in configuration order", asy
   await page.locator("#batch-size").selectOption("64");
   await page.locator("#duration").fill("10");
   const runs = [];
-  for (const count of ["1", "4"]) {
+  for (const count of ["1", "8"]) {
     await page.locator("#concurrency").selectOption(count);
     await page.locator("#start-batch").click();
     await expect(page.locator("#batch-status")).toContainText(

@@ -17,10 +17,12 @@ import {
   noiseConfigs,
   createRecord,
   exportRecord,
+  exportRecords,
   measurementsCsv,
   type ExperimentConfig,
   type BatchResult,
   importRecord,
+  importRecords,
   type SavedRecord,
   aggregateResults,
 } from "./experiments";
@@ -34,8 +36,8 @@ document.querySelector("#app")!.innerHTML = `
 <div class="section-title">RULE <span>02</span></div><div class="presets"><button id="conway">Conway</button><button id="highlife">HighLife</button></div><label>Birth / survival<input id="rule" value="B3/S23" spellcheck="false" aria-describedby="rule-help"></label><p id="rule-help" class="help">Choose the neighbor counts that bring a cell to life or keep it alive.</p><span class="row-label">BIRTH</span><div id="birth" class="counts"></div><span class="row-label">SURVIVAL</span><div id="survival" class="counts"></div>
 <div class="section-title">PERTURBATION <span>03</span></div><label>Noise probability<input id="noise" type="number" min="0" max="1" step="0.0001" value="0"></label><p class="help">Each cell flips independently after every update. Zero preserves the original rule.</p><label>Noise seed<input id="noise-seed" type="number" min="0" max="4294967295" value="7"></label></aside>
 <div class="stage"><div class="stage-heading"><span><i class="dot"></i> <span id="state">PAUSED</span></span><span id="world-label">128 × 128 · WRAP</span></div><div class="canvas-wrap"><canvas id="grid" width="768" height="768" aria-label="Cellular automaton grid. Drag to draw; shift-drag to erase."></canvas><canvas id="comparison" width="768" height="768" hidden aria-label="Matched noiseless simulation"></canvas></div><div class="canvas-caption"><span>DRAG TO DRAW · SHIFT TO ERASE</span><span id="comparison-label">B3/S23</span></div><div class="transport"><button id="play" class="primary">▶ Run</button><button id="step">Step →</button><button id="reset">↺ Restore</button><button id="clear">Clear</button><label class="speed">Speed <input id="speed" type="range" min="1" max="1000" value="15"><output id="speed-out">15/s</output><span id="actual-speed" aria-live="off">0/s actual</span></label></div><div class="stats"><div><span>GENERATION</span><strong id="generation">0</strong></div><div><span>LIVE CELLS</span><strong id="population">0</strong></div><div><span>DENSITY</span><strong id="live-density">0%</strong></div><div><span>ACTIVITY</span><strong id="activity">0%</strong></div></div><details open><summary>Measurements over time <span class="help">density / activity</span></summary><canvas id="chart" width="900" height="140" aria-label="Density and activity chart"></canvas><p class="help">Green: density · amber: activity. These describe behavior, not complexity.</p></details><div class="savebar"><label><input id="paired" type="checkbox"> Compare with no noise</label><button id="screenshot">Save image</button><button id="csv">Export CSV</button></div><div class="record"><input id="name" placeholder="Name this discovery" aria-label="Discovery name"><textarea id="notes" placeholder="What did you observe? What would you test next?" aria-label="Observation notes"></textarea><button id="save" class="primary">＋ Save to notebook</button></div></div></section>
-<section id="experiments" hidden><div class="experiment-intro"><h2>Look beyond a single world.</h2><p>Compare rules using matched starting grids. Runs happen in the background; pause between runs or cancel and keep completed results.</p></div><div class="batch-controls panel"><label>Protocol<select id="protocol"><option value="survey">Survey · 100 rules × 9 starts</option><option value="broad">Broad · 500 rules × 2 starts</option><option value="wide">Wide · 1,000 rules × 1 start</option><option value="noise">Noise study · 50 runs</option><option value="pilot">Quick pilot · 9 rules</option></select></label><label>Grid<select id="batch-size"><option>64</option><option selected>128</option><option>256</option></select></label><label>Generations<input id="duration" type="number" min="1" max="10000" value="1000"></label><label>Sampling seed<input id="sampling-seed" type="number" value="2026" min="0" max="4294967295"></label><label>Parallel runs<select id="concurrency"><option>1</option><option>2</option><option selected>4</option></select></label><button id="start-batch" class="primary">Run experiments ↗</button><button id="pause-batch" disabled>Pause</button><button id="cancel-batch" disabled>Cancel</button><button id="export-batch">Export results</button></div><p id="batch-info" class="help">The standard survey tests 3 densities × 3 seeds. Broad and wide scans test more rules at 10% density with fewer starts per rule.</p><progress id="progress" max="1" value="0"></progress><p id="batch-status" role="status">Ready to investigate.</p><div id="aggregates"></div><div class="table-wrap"><table><thead><tr><th>Rule</th><th>Start density</th><th>Seed</th><th>Noise</th><th>Mean density</th><th>Mean activity</th><th>Density trend</th><th>Activity trend</th><th>Active area</th><th>Patch 8</th><th>Patch 32</th><th>Largest component</th><th>Components</th><th>Observation</th><th>Replay</th></tr></thead><tbody id="results"></tbody></table></div><p class="help">Trends are percentage-point change per 1,000 generations over the final 500. Active area is the fraction of cells changed during the last 64 steps. Patch values are excess local-density variance above shuffled occupancy. Interpret these columns together; none is a complexity score.</p></section>
-<section id="notebook" hidden><div class="experiment-intro"><h2>Keep the interesting things.</h2><p>Saved beginnings, settings, and observations. Export a discovery to share a reproducible experiment.</p></div><label class="import">Import discovery <input id="import" type="file" accept=".json,application/json"></label><div id="records" class="records"></div></section><p id="message" role="status" aria-live="polite"></p></main><footer>EMERGENT / An open-ended study of order, noise & possibility.<span>Every discovery starts with a small change.</span></footer>`;
+<section id="experiments" hidden><div class="experiment-intro"><h2>Look beyond a single world.</h2><p>Compare rules using matched starting grids. Runs happen in the background; pause between runs or cancel and keep completed results.</p></div><div class="batch-controls panel"><label>Protocol<select id="protocol"><option value="survey">Survey · 100 rules × 9 starts</option><option value="broad">Broad · 500 rules × 2 starts</option><option value="wide">Wide · 1,000 rules × 1 start</option><option value="noise">Noise study · 50 runs</option><option value="pilot">Quick pilot · 9 rules</option></select></label><label>Grid<select id="batch-size"><option>64</option><option selected>128</option><option>256</option></select></label><label>Generations<input id="duration" type="number" min="1" max="10000" value="1000"></label><label>Sampling seed<input id="sampling-seed" type="number" value="2026" min="0" max="4294967295"></label><label>Parallel runs<select id="concurrency"><option>1</option><option>2</option><option selected>4</option><option>8</option><option>16</option></select></label><button id="start-batch" class="primary">Run experiments ↗</button><button id="pause-batch" disabled>Pause</button><button id="cancel-batch" disabled>Cancel</button><button id="export-batch">Export results</button></div><p id="batch-info" class="help">The standard survey tests 3 densities × 3 seeds. Broad and wide scans test more rules at 10% density with fewer starts per rule. More workers can help large surveys but use more CPU and memory.</p><progress id="progress" max="1" value="0"></progress><p id="batch-status" role="status">Ready to investigate.</p><div id="aggregates"></div><div class="table-wrap"><table><thead><tr><th>Rule</th><th>Start density</th><th>Seed</th><th>Noise</th><th>Mean density</th><th>Mean activity</th><th>Density trend</th><th>Activity trend</th><th>Active area</th><th>Patch 8</th><th>Patch 32</th><th>Largest component</th><th>Components</th><th>Observation</th><th>Replay</th></tr></thead><tbody id="results"></tbody></table></div><p class="help">Trends are percentage-point change per 1,000 generations over the final 500. Active area is the fraction of cells changed during the last 64 steps. Patch values are excess local-density variance above shuffled occupancy. Interpret these columns together; none is a complexity score.</p></section>
+<section id="notebook" hidden><div class="experiment-intro"><h2>Keep the interesting things.</h2><p>Saved beginnings, settings, and observations. Export discoveries to share reproducible experiments.</p></div><div class="notebook-tools"><label class="import">Import discovery or bundle <input id="import" type="file" accept=".json,application/json"></label><label><input id="select-all-records" type="checkbox"> Select all</label><button id="export-selected" disabled>Export selected</button></div><div id="records" class="records"></div></section><p id="message" role="status" aria-live="polite"></p></main><footer>EMERGENT / An open-ended study of order, noise & possibility.<span>Every discovery starts with a small change.</span></footer>`;
 let width = 128,
   height = 128,
   grid = randomGrid(128, 128, 0.3, 42),
@@ -410,6 +412,13 @@ try {
     "Notebook storage could not be read. Export discoveries to keep a backup.",
   );
 }
+const selectedRecords = new Set<SavedRecord>();
+function updateRecordSelection() {
+  const all = $<HTMLInputElement>("select-all-records");
+  all.checked = records.length > 0 && selectedRecords.size === records.length;
+  all.indeterminate = selectedRecords.size > 0 && !all.checked;
+  $<HTMLButtonElement>("export-selected").disabled = !selectedRecords.size;
+}
 function persist() {
   try {
     localStorage.setItem("emergent-notebook", JSON.stringify(records));
@@ -461,10 +470,13 @@ function loadRecord(r: SavedRecord) {
   );
 }
 function showRecords() {
+  for (const record of selectedRecords)
+    if (!records.includes(record)) selectedRecords.delete(record);
   $("records").replaceChildren();
   if (!records.length) {
     $("records").textContent =
       "Your notebook is empty. Save a discovery from the playground.";
+    updateRecordSelection();
     return;
   }
   records.forEach((r, i) => {
@@ -476,7 +488,19 @@ function showRecords() {
     p.textContent = r.notes;
     const meta = document.createElement("small");
     meta.textContent = `${r.config.rule} · ${r.config.width} × ${r.config.height} · noise ${r.config.noiseProbability} · generation ${r.generation}`;
-    card.append(h, meta, p);
+    const select = document.createElement("label");
+    select.className = "record-select";
+    const checkbox = document.createElement("input");
+    checkbox.type = "checkbox";
+    checkbox.checked = selectedRecords.has(r);
+    checkbox.setAttribute("aria-label", `Select ${r.name}`);
+    checkbox.onchange = () => {
+      if (checkbox.checked) selectedRecords.add(r);
+      else selectedRecords.delete(r);
+      updateRecordSelection();
+    };
+    select.append(checkbox, " Select");
+    card.append(select, h, meta, p);
     if (r.screenshot) {
       const img = document.createElement("img");
       img.src = r.screenshot;
@@ -502,7 +526,25 @@ function showRecords() {
     }
     $("records").append(card);
   });
+  updateRecordSelection();
 }
+$<HTMLInputElement>("select-all-records").onchange = () => {
+  const checked = $<HTMLInputElement>("select-all-records").checked;
+  selectedRecords.clear();
+  if (checked) records.forEach((record) => selectedRecords.add(record));
+  showRecords();
+};
+$("export-selected").onclick = () => {
+  try {
+    download(
+      "discoveries.json",
+      exportRecords(records.filter((record) => selectedRecords.has(record))),
+    );
+    say(`Exported ${selectedRecords.size} discoveries.`);
+  } catch (error) {
+    say(String(error));
+  }
+};
 $("save").onclick = () => {
   try {
     const name =
@@ -527,11 +569,16 @@ $("import").onchange = async () => {
   const f = $<HTMLInputElement>("import").files?.[0];
   if (!f) return;
   try {
-    if (f.size > 5_000_000) throw Error("File exceeds 5 MB.");
-    const r = importRecord(await f.text());
-    records.unshift(r);
+    if (f.size > 50 * 1024 * 1024) throw Error("File exceeds 50 MB.");
+    const imported = importRecords(await f.text());
+    records.unshift(...imported);
     showRecords();
-    if (persist()) say("Discovery imported.");
+    if (persist())
+      say(
+        imported.length === 1
+          ? "Discovery imported."
+          : `${imported.length} discoveries imported.`,
+      );
   } catch (e) {
     say(String(e));
   }
@@ -722,16 +769,6 @@ toggles();
 render();
 showRecords();
 enhanceTable($("results").closest("table")!);
-const availableWorkers = Math.max(
-  1,
-  Math.min(4, (navigator.hardwareConcurrency || 2) - 1),
-);
-const concurrency = $<HTMLSelectElement>("concurrency");
-for (const option of concurrency.options)
-  option.disabled = Number(option.value) > availableWorkers;
-concurrency.value =
-  availableWorkers >= 4 ? "4" : availableWorkers >= 2 ? "2" : "1";
-
 function showAggregates() {
   const groups = aggregateResults(results);
   const root = $("aggregates");
