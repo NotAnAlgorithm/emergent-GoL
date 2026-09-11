@@ -6,6 +6,8 @@ describe("table values", () => {
     expect(compareValues("10", "2", true)).toBeGreaterThan(0);
     expect(compareValues("9.5% ± 4.0%", "20% ± 1%", true)).toBeLessThan(0);
     expect(tableNumber("0.0001")).toBe(0.0001);
+    expect(tableNumber("-20.69 pp/1k")).toBe(-20.69);
+    expect(compareValues("4.01 pp/1k", "22.70 pp/1k", true)).toBeLessThan(0);
     expect(tableNumber("B3/S23")).toBeNaN();
     expect(compareValues("—", "2", true)).toBeGreaterThan(0);
     expect(compareValues("Blob", "blob", false)).toBe(0);

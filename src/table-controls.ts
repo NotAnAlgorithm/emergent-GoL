@@ -1,5 +1,8 @@
 const numberPattern = "[+-]?(?:\\d+(?:\\.\\d*)?|\\.\\d+)(?:e[+-]?\\d+)?";
-const numericValue = new RegExp(`^(${numberPattern})%?(?:\\s*±.*)?$`, "i");
+const numericValue = new RegExp(
+  `^(${numberPattern})(?:%|\\s*pp\\/1k)?(?:\\s*±.*)?$`,
+  "i",
+);
 
 export function tableNumber(value: string): number {
   const match = value.trim().match(numericValue);

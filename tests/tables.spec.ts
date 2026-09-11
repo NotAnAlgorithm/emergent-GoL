@@ -40,6 +40,15 @@ test("result columns filter, sort numerically, reset, and preserve replay notes"
       rows.map((row) => parseFloat(row.children[4].textContent!)),
     );
   expect(descending).toEqual([...densities].sort((a, b) => b - a));
+  await table
+    .getByRole("button", { name: "Sort by Density trend", exact: true })
+    .click();
+  const trends = await page
+    .locator("#results tr")
+    .evaluateAll((rows) =>
+      rows.map((row) => parseFloat(row.children[6].textContent!)),
+    );
+  expect(trends).toEqual([...trends].sort((a, b) => a - b));
   await page
     .locator("#results tr")
     .first()
